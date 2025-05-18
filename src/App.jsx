@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import "remixicon/fonts/remixicon.css";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(false);
+  const menuRef = useRef(null);
 
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = "hidden";
+      setMenuVisible(true); // Torna o menu visível quando aberto
     } else {
       document.body.style.overflow = "auto";
+      // O menu permanecerá visível até que a animação de fechamento termine
     }
 
     return () => {
@@ -105,6 +109,38 @@ function App() {
     });
   }, [showContent]);
 
+  // Animação do menu lateral com GSAP
+  useGSAP(() => {
+    if (!menuRef.current) return;
+    
+    if (menuOpen) {
+      // Animação para abrir o menu (da direita para a esquerda)
+      gsap.fromTo(
+        menuRef.current,
+        { x: "100%" },
+        { 
+          x: "0%", 
+          duration: 1, 
+          ease: "power3.out"
+        }
+      );
+    } else if (menuVisible) {
+      // Animação para fechar o menu (da esquerda para a direita)
+      gsap.to(
+        menuRef.current, 
+        { 
+          x: "100%", 
+          duration: 0.5, 
+          ease: "power3.in",
+          onComplete: () => {
+            // Oculta o menu após a animação de fechamento
+            setMenuVisible(false);
+          }
+        }
+      );
+    }
+  }, [menuOpen, menuVisible]);
+
   return (
     <>
       <div className="svg flex items-center justify-center fixed top-0 left-0 z-[100] w-full h-screen overflow-hidden bg-[#000]">
@@ -160,16 +196,18 @@ function App() {
                   </div>
                 </div>
 
-                {/* Menu Overlay - só aparece quando menuOpen é true */}
-                {menuOpen && (
+                {/* Menu Overlay - só aparece quando menuVisible é true */}
+                {menuVisible && (
                   <>
                     <div
-                      className="fixed top-0 left-0 w-full h-full z-30 bg-black/50 backdrop-blur-3xl"
+                      className={`fixed top-0 left-0 w-full h-full z-30 bg-black/50 backdrop-blur-3xl ${menuOpen ? "opacity-100" : "opacity-0"}`}
                       onClick={() => setMenuOpen(false)}
+                      style={{ transition: "opacity 0.5s ease" }}
                     />
                     <div
-                      className={`fixed top-0 right-0 z-40 h-full w-2/4 bg-gray-800 shadow-lg p-4 transform transition-transform duration-500 ease-in-out ${menuOpen ? "translate-x-0" : "translate-x-full"
-                        }`}
+                      ref={menuRef}
+                      className="fixed top-0 right-0 z-40 h-full w-2/4 bg-gray-800 shadow-lg p-4"
+                      style={{ transform: "translateX(100%)" }}
                     >
                       <ul className="space-y-4 mt-20 ml-10 text-[40px] text-white">
                         <li>
@@ -211,15 +249,15 @@ function App() {
                 alt=""
               />
               <div className="text text-white flex flex-col gap-3 absolute top-20 left-1/2 -translate-x-1/2 scale-[1.4] rotate-[-10deg]">
-                <h1 className="text-[4rem] sm:text-[8rem] md:text-[12rem] leading-none -ml-10 sm:-ml-20 md:-ml-40">
+                <h1 className="text-[4rem] sm:text-[8rem] md:text-[10rem] leading-none -ml-10 sm:-ml-20 md:-ml-40">
                   Thales
                 </h1>
-                <h1 className="text-[4rem] sm:text-[8rem] md:text-[12rem] leading-none ml-5 sm:ml-10 md:ml-20">
+                <h1 className="text-[4rem] sm:text-[8rem] md:text-[10rem] leading-none ml-5 sm:ml-10 md:ml-20">
                   Ribeiro
                 </h1>
               </div>
               <img
-                className="absolute character left-[100%] sm:left-[62.5%] w-[100%] sm:w-[40%] md:w-[24%] -bottom-[150%] -translate-x-1/2 scale-[2] rotate-[-20deg]"
+                className="absolute character left-[100%] sm:left-[62.5%] w-[100%] sm:w-[40%] md:w-[25%] -bottom-[150%] -translate-x-1/2 scale-[2] rotate-[-20deg]"
                 src="./man.png"
                 alt=""
               />
