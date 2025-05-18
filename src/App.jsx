@@ -18,7 +18,6 @@ function App() {
     };
   }, [menuOpen]);
 
-
   let [showContent, setShowContent] = useState(false);
   useGSAP(() => {
     const tl = gsap.timeline();
@@ -140,58 +139,63 @@ function App() {
       {showContent && (
         <div className="main w-full rotate-[-10deg] scale-[1.7]">
           <div className="landing overflow-hidden relative w-full h-screen bg-black">
-            <div className="navbar absolute top-0 left-0 z-[10] w-full py-10 px-10">
+            <div className="navbar absolute top-0 left-0 z-[10] w-full py-5 md:py-10 px-5 md:px-10">
               <div className="logo flex gap-7 justify-between items-center p-4">
-                <h3 className="text-4xl -mt-[8px] leading-none text-white">
+                <h3 className="text-xl md:text-4xl -mt-[8px] leading-none text-white">
                   FULLSTACK DEVELOPER
                 </h3>
                 <div
-                  className="group flex h-13 w-13 cursor-pointer items-center justify-center rounded-3xl p-2 hover:bg-gray-600 transition-colors z-50 "
+                  className="group flex h-10 w-10 md:h-13 md:w-13 cursor-pointer items-center justify-center rounded-3xl p-2 hover:bg-gray-600 transition-colors z-50"
                   onClick={() => setMenuOpen(!menuOpen)}
                 >
                   <div className="relative">
                     <span
-                      className={`block h-1 w-8 origin-center rounded-full bg-white transition-transform duration-300 ease-in-out ${menuOpen ? "translate-y-1.5 rotate-45" : ""
+                      className={`block h-1 w-6 md:w-8 origin-center rounded-full bg-white transition-transform duration-300 ease-in-out ${menuOpen ? "translate-y-1.5 rotate-45" : ""
                         }`}
                     ></span>
                     <span
-                      className={`block h-1 w-6 mt-2 origin-center rounded-full bg-white transition-all duration-300 ease-in-out ${menuOpen ? "w-8 -translate-y-1.5 -rotate-45" : ""
+                      className={`block h-1 w-4 md:w-6 mt-2 origin-center rounded-full bg-white transition-all duration-300 ease-in-out ${menuOpen ? "w-6 md:w-8 -translate-y-1.5 -rotate-45" : ""
                         }`}
                     ></span>
                   </div>
                 </div>
 
-                {/* Overlay com desfoque forte, cobrindo a tela toda */}
+                {/* Menu Overlay - só aparece quando menuOpen é true */}
                 {menuOpen && (
-                  <div
-                    className="fixed top-0 left-0 w-full h-full z-30 bg-black/50 backdrop-blur-3xl"
-                    onClick={() => setMenuOpen(false)}
-                  />
+                  <>
+                    <div
+                      className="fixed top-0 left-0 w-full h-full z-30 bg-black/50 backdrop-blur-3xl"
+                      onClick={() => setMenuOpen(false)}
+                    />
+                    <div
+                      className={`fixed top-0 right-0 z-40 h-full w-2/4 bg-gray-800 shadow-lg p-4 transform transition-transform duration-500 ease-in-out ${menuOpen ? "translate-x-0" : "translate-x-full"
+                        }`}
+                    >
+                      <ul className="space-y-4 mt-20 ml-10 text-[40px] text-white">
+                        <li>
+                          <a href="#" className="block hover:text-purple-400">
+                            Home
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" className="block hover:text-purple-400">
+                            Sobre Mim
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" className="block hover:text-purple-400">
+                            Projetos
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" className="block hover:text-purple-400">
+                            Contato
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </>
                 )}
-
-                {/* Menu modal com animação */}
-                <div
-                  className={`fixed top-0 right-0 z-40 h-full w-1/2 bg-gray-800 shadow-lg p-4 transform transition-transform duration-500 ease-in-out ${menuOpen ? "translate-x-0" : "translate-x-full"
-                    }`}
-                >
-                  <ul className="space-y-4 mt-30 ml-20 text-[40px] text-white ">
-                    <li>
-                      <a href="#" className="block  hover:text-purple-400">Home</a>
-                    </li>
-                    <li>
-                      <a href="#" className="block  hover:text-purple-400">Sobre Mim</a>
-                    </li>
-                    <li>
-                      <a href="#" className="block  hover:text-purple-400">Projetos</a>
-                    </li>
-                    <li>
-                      <a href="#" className="block  hover:text-purple-400">Contato</a>
-                    </li>
-                  </ul>
-                </div>
-
-
-
               </div>
             </div>
 
@@ -207,22 +211,26 @@ function App() {
                 alt=""
               />
               <div className="text text-white flex flex-col gap-3 absolute top-20 left-1/2 -translate-x-1/2 scale-[1.4] rotate-[-10deg]">
-                <h1 className="text-[12rem] leading-none -ml-40">Thales</h1>
-                <h1 className="text-[12rem] leading-none ml-20">Ribeiro</h1>
-                {/* <h1 className="text-[12rem] leading-none -ml-40">auto</h1> */}
+                <h1 className="text-[4rem] sm:text-[8rem] md:text-[12rem] leading-none -ml-10 sm:-ml-20 md:-ml-40">
+                  Thales
+                </h1>
+                <h1 className="text-[4rem] sm:text-[8rem] md:text-[12rem] leading-none ml-5 sm:ml-10 md:ml-20">
+                  Ribeiro
+                </h1>
               </div>
               <img
-                className="absolute character -bottom-[150%] w-[24%] left-16/25 -translate-x-1/2  scale-[2] rotate-[-20deg] "
+                className="absolute character left-[100%] sm:left-[62.5%] w-[100%] sm:w-[40%] md:w-[24%] -bottom-[150%] -translate-x-1/2 scale-[2] rotate-[-20deg]"
                 src="./man.png"
                 alt=""
               />
+
             </div>
             <div className="btmbar text-white absolute bottom-0 left-0 w-full py-15 px-10 bg-gradient-to-t from-black to-transparent">
-              <div className="flex gap-4 items-center">
-                <i className="text-4xl ri-arrow-down-line"></i>
+              <div className="flex gap-4 items-center flex-col-reverse sm:flex-row sm:items-center mt-40 sm:mt-0">
                 <h3 className="text-xl font-[Helvetica_Now_Display]">
                   Role para baixo
                 </h3>
+                <i className="text-4xl ri-arrow-down-line"></i>
               </div>
               <img
                 className="absolute h-[55px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
@@ -230,33 +238,35 @@ function App() {
                 alt=""
               />
             </div>
+
+
           </div>
           <div className="w-full h-screen flex items-center justify-center bg-black">
-            <div className="cntnr flex text-white w-full h-[80%] ">
-              <div className="limg relative w-1/2 h-full">
+            <div className="cntnr flex flex-col md:flex-row text-white w-full h-[80%] px-5 md:px-0">
+              <div className="limg relative w-full md:w-1/2 h-1/2 md:h-full">
                 <img
-                  className="absolute scale-[1.3] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  className="absolute scale-[1.1] md:scale-[1.3] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                   src="./imag.png"
                   alt=""
                 />
               </div>
-              <div className="rg w-[30%] py-30">
-                <h1 className="text-8xl">Saiba mais</h1>
-                <h1 className="text-8xl">sobre mim</h1>
-                <p className="mt-10 text-xl font-[Helvetica_Now_Display]">
+              <div className="rg w-full md:w-[30%] py-10 md:py-30">
+                <h1 className="text-4xl md:text-8xl">Saiba mais</h1>
+                <h1 className="text-4xl md:text-8xl">sobre mim</h1>
+                <p className="mt-5 md:mt-10 text-base md:text-xl font-[Helvetica_Now_Display]">
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                   Distinctio possimus, asperiores nam, omnis inventore nesciunt
                   a architecto eveniet saepe, ducimus necessitatibus at
                   voluptate.
                 </p>
-                <p className="mt-3 text-xl font-[Helvetica_Now_Display]">
+                <p className="mt-3 text-base md:text-xl font-[Helvetica_Now_Display]">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. At
                   eius illum fugit eligendi nesciunt quia similique velit
                   excepturi soluta tenetur illo repellat consectetur laborum
                   eveniet eaque, dicta, hic quisquam? Ex cupiditate ipsa nostrum
                   autem sapiente.
                 </p>
-                <p className="mt-10 text-xl font-[Helvetica_Now_Display]">
+                <p className="mt-5 md:mt-10 text-base md:text-xl font-[Helvetica_Now_Display]">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. At
                   eius illum fugit eligendi nesciunt quia similique velit
                   excepturi soluta tenetur illo repellat consectetur laborum
