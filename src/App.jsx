@@ -4,6 +4,8 @@ import gsap from "gsap";
 import "remixicon/fonts/remixicon.css";
 
 function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   let [showContent, setShowContent] = useState(false);
   useGSAP(() => {
     const tl = gsap.timeline();
@@ -126,15 +128,35 @@ function App() {
         <div className="main w-full rotate-[-10deg] scale-[1.7]">
           <div className="landing overflow-hidden relative w-full h-screen bg-black">
             <div className="navbar absolute top-0 left-0 z-[10] w-full py-10 px-10">
-              <div className="logo flex gap-7">
-                <div className="lines flex flex-col gap-[5px]">
-                  <div className="line w-15 h-2 bg-white"></div>
-                  <div className="line w-8 h-2 bg-white"></div>
-                  <div className="line w-5 h-2 bg-white"></div>
-                </div>
+              <div className="logo flex gap-7 justify-between items-center p-4">
                 <h3 className="text-4xl -mt-[8px] leading-none text-white">
-                  Rockstar
+                  FULLSTACK DEVELOPER
                 </h3>
+                <div className="group flex h-13 w-13 cursor-pointer items-center justify-center rounded-3xl p-2 hover:bg-gray-600 transition-colors z-50 " onClick={() => setMenuOpen(!menuOpen)}>
+                  <div className="relative">
+                    <span
+                      className={`block h-1 w-8 origin-center rounded-full bg-white transition-transform duration-300 ease-in-out ${menuOpen ? "translate-y-1.5 rotate-45" : ""
+                        }`}
+                    ></span>
+                    <span
+                      className={`block h-1 w-6 mt-2 origin-center rounded-full bg-white transition-all duration-300 ease-in-out ${menuOpen ? "w-8 -translate-y-1.5 -rotate-45" : ""
+                        }`}
+                    ></span>
+                  </div>
+                </div>
+
+                {menuOpen && (
+                  <div className="fixed top-0 right-0 z-40 h-full w-1/2 bg-gray-800 shadow-lg p-4">
+                    <ul className="space-y-4 mt-12">
+                      <li><a href="#" className="block text-lg hover:text-purple-400">Home</a></li>
+                      <li><a href="#" className="block text-lg hover:text-purple-400">Sobre</a></li>
+                      <li><a href="#" className="block text-lg hover:text-purple-400">Serviços</a></li>
+                      <li><a href="#" className="block text-lg hover:text-purple-400">Contato</a></li>
+                    </ul>
+                  </div>
+                )}
+
+
               </div>
             </div>
 
@@ -155,7 +177,7 @@ function App() {
                 {/* <h1 className="text-[12rem] leading-none -ml-40">auto</h1> */}
               </div>
               <img
-                className="absolute character -bottom-[150%] left-1/2 -translate-x-1/2  scale-[3] rotate-[-20deg] w-1/4 "
+                className="absolute character -bottom-[150%] w-[24%] left-16/25 -translate-x-1/2  scale-[2] rotate-[-20deg] "
                 src="./man.png"
                 alt=""
               />
@@ -164,12 +186,12 @@ function App() {
               <div className="flex gap-4 items-center">
                 <i className="text-4xl ri-arrow-down-line"></i>
                 <h3 className="text-xl font-[Helvetica_Now_Display]">
-                  Scroll Down
+                  Role para baixo
                 </h3>
               </div>
               <img
                 className="absolute h-[55px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                src="./ps5.png"
+                src="./stacks.png"
                 alt=""
               />
             </div>
@@ -184,8 +206,8 @@ function App() {
                 />
               </div>
               <div className="rg w-[30%] py-30">
-                <h1 className="text-8xl">Still Running,</h1>
-                <h1 className="text-8xl">Not Hunting</h1>
+                <h1 className="text-8xl">Saiba mais</h1>
+                <h1 className="text-8xl">sobre mim</h1>
                 <p className="mt-10 text-xl font-[Helvetica_Now_Display]">
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                   Distinctio possimus, asperiores nam, omnis inventore nesciunt
@@ -206,9 +228,6 @@ function App() {
                   eveniet eaque, dicta, hic quisquam? Ex cupiditate ipsa nostrum
                   autem sapiente.
                 </p>
-                <button className="bg-yellow-500 px-10 py-10 text-black mt-10 text-4xl">
-                  Download Now
-                </button>
               </div>
             </div>
           </div>
