@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import "remixicon/fonts/remixicon.css";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [menuOpen]);
+
 
   let [showContent, setShowContent] = useState(false);
   useGSAP(() => {
@@ -132,7 +145,10 @@ function App() {
                 <h3 className="text-4xl -mt-[8px] leading-none text-white">
                   FULLSTACK DEVELOPER
                 </h3>
-                <div className="group flex h-13 w-13 cursor-pointer items-center justify-center rounded-3xl p-2 hover:bg-gray-600 transition-colors z-50 " onClick={() => setMenuOpen(!menuOpen)}>
+                <div
+                  className="group flex h-13 w-13 cursor-pointer items-center justify-center rounded-3xl p-2 hover:bg-gray-600 transition-colors z-50 "
+                  onClick={() => setMenuOpen(!menuOpen)}
+                >
                   <div className="relative">
                     <span
                       className={`block h-1 w-8 origin-center rounded-full bg-white transition-transform duration-300 ease-in-out ${menuOpen ? "translate-y-1.5 rotate-45" : ""
@@ -145,16 +161,35 @@ function App() {
                   </div>
                 </div>
 
+                {/* Overlay com desfoque forte, cobrindo a tela toda */}
                 {menuOpen && (
-                  <div className="fixed top-0 right-0 z-40 h-full w-1/2 bg-gray-800 shadow-lg p-4">
-                    <ul className="space-y-4 mt-12">
-                      <li><a href="#" className="block text-lg hover:text-purple-400">Home</a></li>
-                      <li><a href="#" className="block text-lg hover:text-purple-400">Sobre</a></li>
-                      <li><a href="#" className="block text-lg hover:text-purple-400">Serviços</a></li>
-                      <li><a href="#" className="block text-lg hover:text-purple-400">Contato</a></li>
-                    </ul>
-                  </div>
+                  <div
+                    className="fixed top-0 left-0 w-full h-full z-30 bg-black/50 backdrop-blur-3xl"
+                    onClick={() => setMenuOpen(false)}
+                  />
                 )}
+
+                {/* Menu modal com animação */}
+                <div
+                  className={`fixed top-0 right-0 z-40 h-full w-1/2 bg-gray-800 shadow-lg p-4 transform transition-transform duration-500 ease-in-out ${menuOpen ? "translate-x-0" : "translate-x-full"
+                    }`}
+                >
+                  <ul className="space-y-4 mt-30 ml-20 text-[40px] text-white ">
+                    <li>
+                      <a href="#" className="block  hover:text-purple-400">Home</a>
+                    </li>
+                    <li>
+                      <a href="#" className="block  hover:text-purple-400">Sobre Mim</a>
+                    </li>
+                    <li>
+                      <a href="#" className="block  hover:text-purple-400">Projetos</a>
+                    </li>
+                    <li>
+                      <a href="#" className="block  hover:text-purple-400">Contato</a>
+                    </li>
+                  </ul>
+                </div>
+
 
 
               </div>
