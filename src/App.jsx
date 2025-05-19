@@ -60,7 +60,7 @@ function App() {
     gsap.to(".main", {
       scale: 1,
       rotate: 0,
-      duration: 2,
+      duration: 1,
       delay: "-1",
       ease: "Expo.easeInOut",
     });
@@ -118,25 +118,25 @@ function App() {
   // Animação do menu lateral com GSAP
   useGSAP(() => {
     if (!menuRef.current) return;
-    
+
     if (menuOpen) {
       // Animação para abrir o menu (da direita para a esquerda)
       gsap.fromTo(
         menuRef.current,
         { x: "100%" },
-        { 
-          x: "0%", 
-          duration: 1, 
+        {
+          x: "0%",
+          duration: 1,
           ease: "power3.out"
         }
       );
     } else if (menuVisible) {
       // Animação para fechar o menu (da esquerda para a direita)
       gsap.to(
-        menuRef.current, 
-        { 
-          x: "100%", 
-          duration: 0.5, 
+        menuRef.current,
+        {
+          x: "100%",
+          duration: 0.5,
           ease: "power3.in",
           onComplete: () => {
             // Oculta o menu após a animação de fechamento
@@ -184,7 +184,7 @@ function App() {
             <div className="navbar absolute top-0 left-0 z-[10] w-full py-5 md:py-10 px-5 md:px-10">
               <div className="logo flex gap-7 justify-between items-center p-4">
                 <h3 className="text-xl md:text-4xl -mt-[8px] leading-none text-white">
-                  FULLSTACK DEVELOPER
+                  FULLSTACK
                 </h3>
                 <div
                   className="group flex h-10 w-10 md:h-13 md:w-13 cursor-pointer items-center justify-center rounded-3xl p-2 hover:bg-gray-600 transition-colors z-50"
@@ -212,7 +212,7 @@ function App() {
                     />
                     <div
                       ref={menuRef}
-                      className="fixed top-0 right-0 z-40 h-full w-2/4 bg-gray-800 shadow-lg p-4"
+                      className="fixed top-0 right-0 z-40 h-full w-4/5 md:w-2/4 bg-gray-800 shadow-lg p-4"
                       style={{ transform: "translateX(100%)" }}
                     >
                       <ul className="space-y-4 mt-20 ml-10 text-[40px] text-white">
@@ -254,22 +254,42 @@ function App() {
                 src="./bg.png"
                 alt=""
               />
-              <div className="text text-white flex flex-col gap-3 absolute top-20 left-1/2 -translate-x-1/2 scale-[1.4] rotate-[-10deg]">
-                <h1 className="text-[4rem] sm:text-[8rem] md:text-[10rem] leading-none -ml-10 sm:-ml-20 md:-ml-40">
+              <div className="text text-white flex flex-col gap-3 absolute md:top-20 sm:top-32 top-30 left-[55%] md:left-[50%] -translate-x-1/2 scale-[1.4] rotate-[-10deg]">
+                <h1 className="text-[3rem] sm:text-[8rem] md:text-[6rem] leading-none -ml-10 sm:-ml-20 md:-ml-10">
                   Thales
                 </h1>
-                <h1 className="text-[4rem] sm:text-[8rem] md:text-[10rem] leading-none ml-5 sm:ml-10 md:ml-20">
+                <h1 className="text-[3rem] sm:text-[8rem] md:text-[6rem] leading-none ml-5 sm:ml-10 md:ml-20">
                   Ribeiro
                 </h1>
+                <h1 className="text-[3rem] sm:text-[8rem] md:text-[6rem] leading-none -ml-10 sm:-ml-20 md:-ml-10">
+                  Developer
+                </h1>
               </div>
-              <img
-                className="absolute character left-[100%] sm:left-[62.5%] w-[100%] sm:w-[40%] md:w-[25%] -bottom-[150%] -translate-x-1/2 scale-[2] rotate-[-20deg]"
-                src="./man.png"
-                alt=""
-              />
-
+              {/* Imagem centralizada e elevada em todos os dispositivos */}
+              <div className="absolute w-full flex justify-center items-center left-32 bottom-38 sm:bottom-24 md:bottom-0">
+                <img
+                  className="character justify-center 
+                    w-[70%] sm:w-[35%] md:w-[17.5%] 
+                    md:absolute md:left-[50.5%] md:-translate-x-1/2 md:-bottom-[150%]
+                    scale-[1.8] sm:scale-[1.9] md:scale-[2] rotate-[-20deg]"
+                  src="./man.png"
+                  alt=""
+                />
+              </div>
             </div>
             <div className="btmbar text-white absolute bottom-0 left-0 w-full py-15 px-10 bg-gradient-to-t from-black to-transparent">
+              <div className="flex gap-4 items-center flex-col-reverse sm:flex-row sm:items-center mt-40 sm:mt-0">
+                <h3 className="text-xl font-[Helvetica_Now_Display]">
+                  Role para baixo
+                </h3>
+                <i className="text-4xl ri-arrow-down-line"></i>
+              </div>
+              <img
+                className="absolute h-[55px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                src="./stacks.png"
+                alt=""
+              />
+            </div><div className="btmbar text-white absolute bottom-0 left-0 w-full py-15 px-10 bg-gradient-to-t from-black to-transparent">
               <div className="flex gap-4 items-center flex-col-reverse sm:flex-row sm:items-center mt-40 sm:mt-0">
                 <h3 className="text-xl font-[Helvetica_Now_Display]">
                   Role para baixo
