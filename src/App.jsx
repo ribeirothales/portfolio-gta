@@ -266,9 +266,9 @@ function App() {
                 </h1>
               </div>
               {/* Imagem centralizada e elevada em todos os dispositivos */}
-              <div className="absolute w-full flex justify-center items-center left-32 bottom-38 sm:bottom-24 md:bottom-0">
+              <div className="absolute w-full flex justify-center items-center left-32 bottom-20 sm:bottom-24 md:bottom-0">
                 <img
-                  className="character justify-center 
+                  className="character 
                     w-[70%] sm:w-[35%] md:w-[17.5%] 
                     md:absolute md:left-[50.5%] md:-translate-x-1/2 md:-bottom-[150%]
                     scale-[1.8] sm:scale-[1.9] md:scale-[2] rotate-[-20deg]"
@@ -277,27 +277,15 @@ function App() {
                 />
               </div>
             </div>
-            <div className="btmbar text-white absolute bottom-0 left-0 w-full py-15 px-10 bg-gradient-to-t from-black to-transparent">
-              <div className="flex gap-4 items-center flex-col-reverse sm:flex-row sm:items-center mt-40 sm:mt-0">
-                <h3 className="text-xl font-[Helvetica_Now_Display]">
+            <div className="btmbar text-white absolute bottom-0 left-0 w-full py-10 md:py-15 px-10 bg-gradient-to-t from-black to-transparent">
+              <div className="flex gap-2 items-center flex-col-reverse sm:flex-row sm:items-center mt-40 sm:mt-0">
+                <h3 className="text-20 md:text-xl font-[Helvetica_Now_Display]">
                   Role para baixo
                 </h3>
-                <i className="text-4xl ri-arrow-down-line"></i>
+                <i className="text-xl md:text-4xl ri-arrow-down-line"></i>
               </div>
               <img
-                className="absolute h-[55px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                src="./stacks.png"
-                alt=""
-              />
-            </div><div className="btmbar text-white absolute bottom-0 left-0 w-full py-15 px-10 bg-gradient-to-t from-black to-transparent">
-              <div className="flex gap-4 items-center flex-col-reverse sm:flex-row sm:items-center mt-40 sm:mt-0">
-                <h3 className="text-xl font-[Helvetica_Now_Display]">
-                  Role para baixo
-                </h3>
-                <i className="text-4xl ri-arrow-down-line"></i>
-              </div>
-              <img
-                className="absolute h-[55px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                className="absolute h-[30px] md:h-[55px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                 src="./stacks.png"
                 alt=""
               />
