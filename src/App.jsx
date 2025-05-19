@@ -8,6 +8,12 @@ function App() {
   const [menuVisible, setMenuVisible] = useState(false);
   const menuRef = useRef(null);
 
+  // Definir o fundo do body como preto para evitar o frame branco
+  useEffect(() => {
+    // Definir o fundo como preto
+    document.body.style.backgroundColor = "#000";
+  }, []);
+
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = "hidden";
