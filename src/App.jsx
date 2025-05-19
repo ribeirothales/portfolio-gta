@@ -266,7 +266,7 @@ function App() {
                 </h1>
               </div>
               {/* Imagem centralizada e elevada em todos os dispositivos */}
-              <div className="absolute w-full flex justify-center items-center left-32 bottom-20 sm:bottom-24 md:bottom-0">
+              <div className="absolute w-full flex justify-center items-center left-32 bottom-15 sm:bottom-24 md:bottom-0">
                 <img
                   className="character 
                     w-[70%] sm:w-[35%] md:w-[17.5%] 
@@ -278,7 +278,7 @@ function App() {
               </div>
             </div>
             <div className="btmbar text-white absolute bottom-0 left-0 w-full py-10 md:py-15 px-10 bg-gradient-to-t from-black to-transparent">
-              <div className="flex gap-2 items-center flex-col-reverse sm:flex-row sm:items-center mt-40 sm:mt-0">
+              <div className="flex gap-2 items-center flex-col-reverse sm:flex-row sm:items-center mt-25 md:mt-10 sm:mt-0">
                 <h3 className="text-20 md:text-xl font-[Helvetica_Now_Display]">
                   Role para baixo
                 </h3>
@@ -291,8 +291,8 @@ function App() {
               />
             </div>
 
-
           </div>
+          
           <div className="w-full h-screen flex items-center justify-center bg-black">
             <div className="cntnr flex flex-col md:flex-row text-white w-full h-[80%] px-5 md:px-0">
               <div className="limg relative w-full md:w-1/2 h-1/2 md:h-full">
