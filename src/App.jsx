@@ -258,7 +258,7 @@ function App() {
                 src="./bg.png"
                 alt=""
               />
-              <div className="absolute text text-white flex flex-col gap-3 md:top-20 sm:top-32 top-30 left-[55%] md:left-[50%] -translate-x-1/2 scale-[1.4] rotate-[-10deg]">
+              {/* <div className="absolute text text-white flex flex-col gap-3 md:top-20 sm:top-32 top-30 left-[55%] md:left-[50%] -translate-x-1/2 scale-[1.4] rotate-[-10deg]">
                 <h1 className="text-[3rem] sm:text-[8rem] md:text-[6rem] leading-none -ml-10 sm:-ml-20 md:-ml-10">
                   Thales
                 </h1>
@@ -268,7 +268,15 @@ function App() {
                 <h1 className="text-[3rem] sm:text-[8rem] md:text-[6rem] leading-none -ml-10 sm:-ml-20 md:-ml-10">
                   Developer
                 </h1>
-              </div>
+              </div> */}
+              <img
+                  className="character 
+                    w-[70%] sm:w-[35%] md:w-[17.5%] sticky
+                    md:sticky md:left-[58%] md:-translate-x-1/2 md:-bottom-[150%]
+                    scale-[1.8] sm:scale-[1.9] md:scale-[2] rotate-[-20deg]"
+                  src="./logo-name.png"
+                  alt=""
+                />
               {/* Imagem centralizada e elevada em todos os dispositivos */}
               <div className="absolute hidden w-full sm:flex justify-center items-center left-34 bottom-15 sm:bottom-24 md:bottom-10">
                 <img
