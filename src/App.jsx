@@ -106,9 +106,9 @@ function App() {
       gsap.to(".main .text", {
         x: `${xMove * 0.4}%`,
       });
-      gsap.to(".text", {
-        x: `${xMove * 0.3}%`,
-      });
+      // gsap.to(".text", {
+      //   x: `${xMove * 0.3}%`,
+      // });
 
       gsap.to(".sky", {
         x: xMove,
@@ -269,14 +269,15 @@ function App() {
                   Developer
                 </h1>
               </div> */}
-              <img
-                  className="character 
-                    w-[70%] sm:w-[35%] md:w-[17.5%] sticky
-                    md:sticky md:left-[58%] md:-translate-x-1/2 md:-bottom-[150%]
-                    scale-[1.8] sm:scale-[1.9] md:scale-[2] rotate-[-20deg]"
-                  src="./logo-name.png"
-                  alt=""
-                />
+               <img
+    className="absolute text bottom-[42%] left-1/2 -translate-x-1/2
+      w-[70%] sm:w-[35%] md:w-[19.5%] 
+      rotate-[-20deg]"
+    src="./logo-name.png"
+    alt=""
+  />
+
+
               {/* Imagem centralizada e elevada em todos os dispositivos */}
               <div className="absolute hidden w-full sm:flex justify-center items-center left-34 bottom-15 sm:bottom-24 md:bottom-10">
                 <img
