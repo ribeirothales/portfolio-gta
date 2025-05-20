@@ -293,7 +293,7 @@ function App() {
                 <i className="text-xl md:text-4xl ri-arrow-down-line"></i>
               </div>
               <img
-                className="absolute h-[30px] md:h-[55px] top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2"
+                className="absolute h-[30px] md:h-[55px] top-[50%] md:top-[60%] left-[49.6%] md:left-1/2 -translate-x-1/2 -translate-y-1/2"
                 src="./stacks.png"
                 alt=""
               />
