@@ -270,7 +270,7 @@ function App() {
                 </h1>
               </div> */}
               <img
-                className="absolute hidden justify-center items-center sm:flex text left-[27%] xl:left-[40%] bottom-[35%] xl:bottom-[42%] w-[50%] xl:w-[19.5%]  rotate-[-20deg]"
+                className="absolute hidden justify-center items-center sm:flex text left-[25%] xl:left-[40%] bottom-[45%] xl:bottom-[42%] w-[50%] xl:w-[19.5%]  rotate-[-20deg]"
                 src="./logo-name.png"
                 alt=""
               />
@@ -278,7 +278,7 @@ function App() {
               <div className="absolute hidden w-full sm:flex justify-center items-center bottom-10">
                 <img
                   className="character 
-                    w-[42%] xl:w-[17.5%] sticky left-[50%] 
+                    w-[50%] xl:w-[17.5%] sticky left-[50%] 
                     scale-[10] rotate-[-20deg]"
                   src="./man3.png"
                   alt=""
@@ -294,14 +294,14 @@ function App() {
 
             </div>
             <div className="btmbar text-white absolute bottom-0 left-0 w-full py-10 md:py-15 px-10 bg-gradient-to-t from-black to-transparent">
-              <div className="flex gap-2 items-center flex-col-reverse sm:flex-row sm:items-center mt-25 md:mt-10 sm:mt-0">
-                <h3 className="text-20 md:text-xl font-[Helvetica_Now_Display]">
-                  Role para baixo
+              <div className="flex gap-2 items-center flex-col-reverse  xl:flex-row xl:items-center mt-25 md:mt-10 sm:mt-0">
+                <h3 className="text-20 md:text-[15px] xl:text-xl font-[Helvetica_Now_Display]">
+                  Passe para baixo
                 </h3>
-                <i className="text-xl md:text-4xl ri-arrow-down-line"></i>
+                <i className="text-xl md:text-[25px] xl:text-4xl ri-arrow-down-line"></i>
               </div>
               <img
-                className="absolute h-[30px] md:h-[55px] top-[50%] md:top-[60%] left-[49.6%] md:left-1/2 -translate-x-1/2 -translate-y-1/2"
+                className="absolute h-[30px] md:h-[35px] xl:h-[55px] top-[50%] md:top-[35%] xl:top-[60%] left-[49.6%] md:left-1/2 -translate-x-1/2 -translate-y-1/2"
                 src="./stacks.png"
                 alt=""
               />
