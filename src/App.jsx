@@ -269,13 +269,13 @@ function App() {
                   Developer
                 </h1>
               </div> */}
-               <img
-    className="absolute text bottom-[42%] left-1/2 -translate-x-1/2
+              <img
+                className="absolute hidden sm:flex text bottom-[42%] left-1/2 -translate-x-1/2
       w-[70%] sm:w-[35%] md:w-[19.5%] 
       rotate-[-20deg]"
-    src="./logo-name.png"
-    alt=""
-  />
+                src="./logo-name.png"
+                alt=""
+              />
 
 
               {/* Imagem centralizada e elevada em todos os dispositivos */}
