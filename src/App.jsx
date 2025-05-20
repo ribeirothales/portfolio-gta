@@ -109,7 +109,7 @@ function App() {
       gsap.to(".text", {
         x: `${xMove * 0.3}%`,
       });
-      
+
       gsap.to(".sky", {
         x: xMove,
       });
@@ -258,14 +258,14 @@ function App() {
                 src="./bg.png"
                 alt=""
               />
-              <div className="absolute hidden text text-white sm:flex flex-col gap-[1vh] md:top-20 sm:top-32 top-30 left-[55%] md:left-[50%] -translate-x-1/2 rotate-[-10deg]">
-                <h1 className="text-[15vw] sm:text-[8vw] md:text-[5vw] leading-none -ml-[1vw] sm:-ml-[2vw] md:-ml-[1vw]">
+              <div className="absolute text text-white flex flex-col gap-3 md:top-20 sm:top-32 top-30 left-[55%] md:left-[50%] -translate-x-1/2 scale-[1.4] rotate-[-10deg]">
+                <h1 className="text-[3rem] sm:text-[8rem] md:text-[6rem] leading-none -ml-10 sm:-ml-20 md:-ml-10">
                   Thales
                 </h1>
-                <h1 className="text-[15vw] sm:text-[8vw] md:text-[5vw] leading-none ml-[0.5vw] sm:ml-[1vw] md:ml-[5.5vw]">
+                <h1 className="text-[3rem] sm:text-[8rem] md:text-[6rem] leading-none ml-5 sm:ml-10 md:ml-20">
                   Ribeiro
                 </h1>
-                <h1 className="text-[15vw] sm:text-[8vw] md:text-[5vw] leading-none -ml-[1vw] sm:-ml-[2vw] md:-ml-[1vw]">
+                <h1 className="text-[3rem] sm:text-[8rem] md:text-[6rem] leading-none -ml-10 sm:-ml-20 md:-ml-10">
                   Developer
                 </h1>
               </div>
@@ -309,7 +309,7 @@ function App() {
             <div className="cntnr flex flex-col md:flex-row text-white w-full h-[80%] px-5 md:px-0">
               <div className="limg relative w-full md:w-1/2 h-1/2 md:h-full">
                 <img
-                  className="relative md:absolut justify-center scale-[1.1] md:scale-[1.3] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  className="relative md:absolut justify-center scale-[1.1] md:scale-[1] top-[100%] left-1/2 -translate-x-1/2 -translate-y-1/2"
                   src="./imag.png"
                   alt=""
                 />
