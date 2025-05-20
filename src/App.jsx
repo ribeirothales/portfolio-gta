@@ -254,25 +254,25 @@ function App() {
                 src="./bg.png"
                 alt=""
               />
-              <div className="text text-white flex flex-col gap-3 absolute md:top-20 sm:top-32 top-30 left-[55%] md:left-[50%] -translate-x-1/2 scale-[1.4] rotate-[-10deg]">
-                <h1 className="text-[3rem] sm:text-[8rem] md:text-[6rem] leading-none -ml-10 sm:-ml-20 md:-ml-10">
+              <div className="absolute text text-white flex flex-col gap-[1vh] md:top-20 sm:top-32 top-30 left-[55%] md:left-[50%] -translate-x-1/2 rotate-[-10deg]">
+                <h1 className="text-[3vw] sm:text-[8vw] md:text-[5vw] leading-none -ml-[1vw] sm:-ml-[2vw] md:-ml-[1vw]">
                   Thales
                 </h1>
-                <h1 className="text-[3rem] sm:text-[8rem] md:text-[6rem] leading-none ml-5 sm:ml-10 md:ml-20">
+                <h1 className="text-[3vw] sm:text-[8vw] md:text-[5vw] leading-none ml-[0.5vw] sm:ml-[1vw] md:ml-[5.5vw]">
                   Ribeiro
                 </h1>
-                <h1 className="text-[3rem] sm:text-[8rem] md:text-[6rem] leading-none -ml-10 sm:-ml-20 md:-ml-10">
+                <h1 className="text-[3vw] sm:text-[8vw] md:text-[5vw] leading-none -ml-[1vw] sm:-ml-[2vw] md:-ml-[1vw]">
                   Developer
                 </h1>
               </div>
               {/* Imagem centralizada e elevada em todos os dispositivos */}
-              <div className="absolute w-full flex justify-center items-center left-32 bottom-15 sm:bottom-24 md:bottom-0">
+              <div className="absolute w-full flex justify-center items-center left-34 bottom-15 sm:bottom-24 md:bottom-10">
                 <img
                   className="character 
-                    w-[70%] sm:w-[35%] md:w-[17.5%] 
-                    md:absolute md:left-[50.5%] md:-translate-x-1/2 md:-bottom-[150%]
+                    w-[70%] sm:w-[35%] md:w-[17.5%] sticky
+                    md:sticky md:left-[58%] md:-translate-x-1/2 md:-bottom-[150%]
                     scale-[1.8] sm:scale-[1.9] md:scale-[2] rotate-[-20deg]"
-                  src="./man.png"
+                  src="./man2.png"
                   alt=""
                 />
               </div>
@@ -285,7 +285,7 @@ function App() {
                 <i className="text-xl md:text-4xl ri-arrow-down-line"></i>
               </div>
               <img
-                className="absolute h-[30px] md:h-[55px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                className="absolute h-[30px] md:h-[55px] top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2"
                 src="./stacks.png"
                 alt=""
               />
