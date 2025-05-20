@@ -106,6 +106,10 @@ function App() {
       gsap.to(".main .text", {
         x: `${xMove * 0.4}%`,
       });
+      gsap.to(".text", {
+        x: `${xMove * 0.3}%`,
+      });
+      
       gsap.to(".sky", {
         x: xMove,
       });
@@ -272,7 +276,7 @@ function App() {
                     w-[70%] sm:w-[35%] md:w-[17.5%] sticky
                     md:sticky md:left-[58%] md:-translate-x-1/2 md:-bottom-[150%]
                     scale-[1.8] sm:scale-[1.9] md:scale-[2] rotate-[-20deg]"
-                  src="./man2.png"
+                  src="./man3.png"
                   alt=""
                 />
               </div>
