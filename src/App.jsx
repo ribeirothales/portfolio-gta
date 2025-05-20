@@ -254,19 +254,19 @@ function App() {
                 src="./bg.png"
                 alt=""
               />
-              <div className="absolute text text-white flex flex-col gap-[1vh] md:top-20 sm:top-32 top-30 left-[55%] md:left-[50%] -translate-x-1/2 rotate-[-10deg]">
-                <h1 className="text-[3vw] sm:text-[8vw] md:text-[5vw] leading-none -ml-[1vw] sm:-ml-[2vw] md:-ml-[1vw]">
+              <div className="absolute hidden text text-white sm:flex flex-col gap-[1vh] md:top-20 sm:top-32 top-30 left-[55%] md:left-[50%] -translate-x-1/2 rotate-[-10deg]">
+                <h1 className="text-[15vw] sm:text-[8vw] md:text-[5vw] leading-none -ml-[1vw] sm:-ml-[2vw] md:-ml-[1vw]">
                   Thales
                 </h1>
-                <h1 className="text-[3vw] sm:text-[8vw] md:text-[5vw] leading-none ml-[0.5vw] sm:ml-[1vw] md:ml-[5.5vw]">
+                <h1 className="text-[15vw] sm:text-[8vw] md:text-[5vw] leading-none ml-[0.5vw] sm:ml-[1vw] md:ml-[5.5vw]">
                   Ribeiro
                 </h1>
-                <h1 className="text-[3vw] sm:text-[8vw] md:text-[5vw] leading-none -ml-[1vw] sm:-ml-[2vw] md:-ml-[1vw]">
+                <h1 className="text-[15vw] sm:text-[8vw] md:text-[5vw] leading-none -ml-[1vw] sm:-ml-[2vw] md:-ml-[1vw]">
                   Developer
                 </h1>
               </div>
               {/* Imagem centralizada e elevada em todos os dispositivos */}
-              <div className="absolute w-full flex justify-center items-center left-34 bottom-15 sm:bottom-24 md:bottom-10">
+              <div className="absolute hidden w-full sm:flex justify-center items-center left-34 bottom-15 sm:bottom-24 md:bottom-10">
                 <img
                   className="character 
                     w-[70%] sm:w-[35%] md:w-[17.5%] sticky
@@ -276,6 +276,14 @@ function App() {
                   alt=""
                 />
               </div>
+              <div className="flex w-[190%] justify-center top-40 sm:hidden absolute left-1/2 -translate-x-1/2">
+                <img
+                  src="./man-mob.png"
+                  alt="Imagem Mobile"
+                  className="w-[70%]"
+                />
+              </div>
+
             </div>
             <div className="btmbar text-white absolute bottom-0 left-0 w-full py-10 md:py-15 px-10 bg-gradient-to-t from-black to-transparent">
               <div className="flex gap-2 items-center flex-col-reverse sm:flex-row sm:items-center mt-25 md:mt-10 sm:mt-0">
@@ -292,7 +300,7 @@ function App() {
             </div>
 
           </div>
-          
+
           <div className="w-full h-screen flex items-center justify-center bg-black">
             <div className="cntnr flex flex-col md:flex-row text-white w-full h-[80%] px-5 md:px-0">
               <div className="limg relative w-full md:w-1/2 h-1/2 md:h-full">
