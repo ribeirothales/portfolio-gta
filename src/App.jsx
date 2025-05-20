@@ -270,21 +270,16 @@ function App() {
                 </h1>
               </div> */}
               <img
-                className="absolute hidden sm:flex text bottom-[42%] left-1/2 -translate-x-1/2
-      w-[70%] sm:w-[35%] md:w-[19.5%] 
-      rotate-[-20deg]"
+                className="absolute hidden justify-center items-center sm:flex text left-[27%] xl:left-[40%] bottom-[35%] xl:bottom-[42%] w-[50%] xl:w-[19.5%]  rotate-[-20deg]"
                 src="./logo-name.png"
                 alt=""
               />
-
-
-              {/* Imagem centralizada e elevada em todos os dispositivos */}
-              <div className="absolute hidden w-full sm:flex justify-center items-center left-34 bottom-15 sm:bottom-24 md:bottom-10">
+              
+              <div className="absolute hidden w-full sm:flex justify-center items-center bottom-10">
                 <img
                   className="character 
-                    w-[70%] sm:w-[35%] md:w-[17.5%] sticky
-                    md:sticky md:left-[58%] md:-translate-x-1/2 md:-bottom-[150%]
-                    scale-[1.8] sm:scale-[1.9] md:scale-[2] rotate-[-20deg]"
+                    w-[42%] xl:w-[17.5%] sticky left-[50%] 
+                    scale-[10] rotate-[-20deg]"
                   src="./man3.png"
                   alt=""
                 />
