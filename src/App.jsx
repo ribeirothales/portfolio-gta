@@ -313,7 +313,7 @@ function App() {
             <div className="cntnr flex flex-col md:flex-row text-white w-full h-[90%] px-5 md:px-0">
               <div className="limg relative w-full md:w-1/2 h-1/2 md:h-full">
                 <img
-                  className="relative md:absolut justify-center md:scale-[1] top-[38%] xl:top-[18%]"
+                  className="relative md:absolut justify-center md:scale-[1] top-[18%] xl:top-[18%] md:top-[38%] "
                   src="./imag.png"
                   alt=""
                 />
