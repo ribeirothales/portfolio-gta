@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --breakpoint-4xl: 2560px;
+}
+
 @font-face {
   font-family: "pricedown";
   src: url("/pricedown.otf") format("opentype");
@@ -12,3 +16,4 @@ body {
   font-family: "pricedown";
   background-color: black;
 }
+

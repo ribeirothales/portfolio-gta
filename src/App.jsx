@@ -320,7 +320,7 @@ function App() {
             <div className="cntnr flex flex-col md:flex-row text-white w-full h-[90%] px-5 md:px-0">
               <div className="limg relative w-full md:w-1/2 h-1/2 md:h-full">
                 <img
-                  className="relative md:absolute justify-center md:scale-[1] top-[18%] xl:top-[18%] md:top-[38%] "
+                  className="relative md:absolute justify-center top-[18%] xl:top-[18%] md:top-[38%]"
                   src="./imag.png"
                   alt=""
                 />
@@ -331,7 +331,7 @@ function App() {
                   <h1 className="text-4xl xl:text-8xl md:text-6xl ml-10 xl:ml-30 md:ml-0 ">sobre mim</h1>
                 </div>
 
-                <p className="mt-5 md:mt-10 text-base text-justify md:text-xl font-[Helvetica_Now_Display]">
+                <p className="mt-5 md:mt-10 text-justify text-xl md:text-xl lg:text-xl 4xl:text-4xl   font-[Helvetica_Now_Display]">
                   Meu nome é Thales, tenho 29 anos e sou do Rio de Janeiro.
                   Sou um Desenvolvedor FullStack e tenho atuado como freelancer e em projetos pessoais,
                   sempre buscando entregar soluções funcionais, bem estruturadas e com um bom design.
