@@ -301,7 +301,7 @@ function App() {
 
             </div>
             <div className="btmbar text-white absolute bottom-0 left-0 w-full py-10 md:py-15 px-10 bg-gradient-to-t from-black to-transparent">
-              <div className="flex gap-6 items-center flex-col-reverse  xl:flex-row xl:items-center mt-25 md:mt-10 sm:mt-0">
+              <div className="flex gap-6 items-center flex-row xl:flex-row justify-center md:justify-start xl:items-center mt-25 md:mt-10 sm:mt-0">
                 {socialLinks.map(social => (
                   <a key={social.label} href={social.href} target="_blank" aria-label={social.label} className="hover:text-brand transition-colors">
                     <social.icon size={28} />
