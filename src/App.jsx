@@ -226,7 +226,7 @@ function App() {
                           </a>
                         </li>
                         <li>
-                          <a href="#" className="block hover:text-purple-400">
+                          <a href="#cntnr" className="block hover:text-purple-400">
                             Sobre Mim
                           </a>
                         </li>
@@ -309,37 +309,39 @@ function App() {
 
           </div>
 
-          <div className="w-full h-screen flex items-center justify-center bg-black">
-            <div className="cntnr flex flex-col md:flex-row text-white w-full h-[80%] px-5 md:px-0">
+          <div className="w-full about-me h-screen flex items-center justify-center bg-black">
+            <div className="cntnr flex flex-col md:flex-row text-white w-full h-[90%] px-5 md:px-0">
               <div className="limg relative w-full md:w-1/2 h-1/2 md:h-full">
                 <img
-                  className="relative md:absolut justify-center scale-[1.1] md:scale-[1] top-[100%] left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  className="relative md:absolut justify-center md:scale-[1] top-[38%] xl:top-[18%]"
                   src="./imag.png"
                   alt=""
                 />
               </div>
-              <div className="rg w-full md:w-[30%] py-10 md:py-30">
-                <h1 className="text-4xl md:text-8xl">Saiba mais</h1>
-                <h1 className="text-4xl md:text-8xl">sobre mim</h1>
-                <p className="mt-5 md:mt-10 text-base md:text-xl font-[Helvetica_Now_Display]">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Distinctio possimus, asperiores nam, omnis inventore nesciunt
-                  a architecto eveniet saepe, ducimus necessitatibus at
-                  voluptate.
+              <div className="rg text-justify w-full xl:w-[32%] md:w-[35%] py-10 xl:py-20 md:py-40">
+                <div className="justify-center items-center text-center xl:text-start md:text-center ">
+                  <h1 className="text-4xl xl:text-8xl md:text-6xl">Saiba mais</h1>
+                <h1 className="text-4xl xl:text-8xl md:text-6xl ml-10 xl:ml-30 md:ml-0 ">sobre mim</h1>
+                </div>
+                
+                <p className="mt-5 md:mt-10 text-base text-justify md:text-xl font-[Helvetica_Now_Display]">
+                  Meu nome é Thales, tenho 29 anos e sou do Rio de Janeiro.
+                   Sou um Desenvolvedor FullStack e tenho atuado como freelancer e em projetos pessoais, 
+                  sempre buscando entregar soluções funcionais, bem estruturadas e com um bom design.
                 </p>
-                <p className="mt-3 text-base md:text-xl font-[Helvetica_Now_Display]">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                  eius illum fugit eligendi nesciunt quia similique velit
-                  excepturi soluta tenetur illo repellat consectetur laborum
-                  eveniet eaque, dicta, hic quisquam? Ex cupiditate ipsa nostrum
-                  autem sapiente.
+                <p className="mt-5 md:mt-6 text-base md:text-xl font-[Helvetica_Now_Display]">
+
+                  Minha trajetória na tecnologia começou cedo: ainda no colégio aprendi HTML,
+                   CSS e Photoshop, desenvolvendo pequenos sites por conta própria. Desde então, segui 
+                   me aprofundando na área, passando por linguagens como C (minha primeira linguagem de fato), 
+                   Java e Python. Agora, com foco em JavaScript, utilizo principalmente Node.js no back-end e React com Tailwind no front-end.
+                 
                 </p>
-                <p className="mt-5 md:mt-10 text-base md:text-xl font-[Helvetica_Now_Display]">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                  eius illum fugit eligendi nesciunt quia similique velit
-                  excepturi soluta tenetur illo repellat consectetur laborum
-                  eveniet eaque, dicta, hic quisquam? Ex cupiditate ipsa nostrum
-                  autem sapiente.
+                <p className="mt-5 md:mt-6 text-base md:text-xl font-[Helvetica_Now_Display]">
+                  Cursei parte de Ciência da Computação na UFRJ, mas decidi fazer uma pausa para seguir
+                   outro caminho acadêmico — me formei em Filosofia, o que contribuiu bastante para meu 
+                   raciocínio lógico e capacidade de análise. Agora, estou de volta ao universo da tecnologia,
+                    mais focado do que nunca em consolidar minha carreira como desenvolvedor.
                 </p>
               </div>
             </div>
