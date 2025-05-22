@@ -72,7 +72,7 @@ const AppShowcase = () => {
             </div>
             <div className="text-content">
               <h2>Hermetic Chat</h2>
-              <p className="text-white-50 md:text-xl ">
+              <p className="text-white-50 md:text-xl text-justify">
                 Uma aplicação de chat em tempo real, onde os usuários podem interagir
                 instantaneamente com amigos e colegas. A aplicação inclui recursos como
                 mensagens privadas, alternância entre temas Dark e Light, lista de usuários
