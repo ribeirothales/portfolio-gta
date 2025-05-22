@@ -11,7 +11,6 @@ const AppShowcase = () => {
   const libraryRef = useRef(null);
   const ycDirectoryRef = useRef(null);
 
-  // Estado para controlar qual modal está aberto (null = nenhum aberto)
   const [openModalId, setOpenModalId] = useState(null);
 
   useEffect(() => {
@@ -37,10 +36,7 @@ const AppShowcase = () => {
     cards.forEach((card, index) => {
       gsap.fromTo(
         card,
-        {
-          y: 50,
-          opacity: 0,
-        },
+        { y: 50, opacity: 0 },
         {
           y: 0,
           opacity: 1,
@@ -60,9 +56,8 @@ const AppShowcase = () => {
 
   return (
     <section id="work" ref={sectionRef} className="app-showcase font-[Poppins]">
-      <div className="w-full ">
+      <div className="w-full">
         <div className="showcaselayout">
-          {/* Primeiro projeto */}
           <div ref={rydeRef} className="first-project-wrapper">
             <div
               className="image-wrapper cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105"
@@ -81,7 +76,6 @@ const AppShowcase = () => {
             </div>
           </div>
 
-          {/* Outros projetos */}
           <div className="project-list-wrapper overflow-hidden">
             <div className="project" ref={libraryRef}>
               <div
@@ -108,13 +102,12 @@ const AppShowcase = () => {
                   className="transition-transform duration-300 ease-in-out hover:scale-105"
                 />
               </div>
-              <h2>Pitágoras</h2>
+              <h2>A questão pitagórica</h2>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Modais separados */}
       {openModalId === "hermeticChat" && (
         <ModalWrapper onClose={closeModal}>
           <h3 className="text-2xl font-bold mb-6 text-center">Hermetic Chat</h3>
@@ -151,21 +144,13 @@ const AppShowcase = () => {
             >
               Ver no GitHub
             </a>
-            {/* <a
-              href="https://link-eleicoes-online.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white text-center py-3 px-6 rounded-xl font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-lg hover:brightness-110 transition"
-            >
-              Ver Projeto Online
-            </a> */}
           </div>
         </ModalWrapper>
       )}
 
       {openModalId === "pitagoras" && (
         <ModalWrapper onClose={closeModal}>
-          <h3 className="text-2xl font-bold mb-6 text-center">Pitágoras</h3>
+          <h3 className="text-2xl font-bold mb-6 text-center">A questão pitagórica</h3>
           <div className="flex flex-col gap-4">
             <a
               href="https://github.com/ribeirothales/pythagoras-website"
@@ -190,25 +175,37 @@ const AppShowcase = () => {
   );
 };
 
-const ModalWrapper = ({ children, onClose }) => (
-  <div
-    className="fixed inset-0 flex items-center justify-center z-50"
-    style={{
-      backdropFilter: "blur(8px)",
-      WebkitBackdropFilter: "blur(8px)",
-    }}
-  >
-    <div className="bg-[#0a1e3f] rounded-2xl p-8 max-w-md w-full relative shadow-2xl text-white">
-      <button
-        onClick={onClose}
-        className="absolute top-3 right-4 text-white hover:text-gray-300 text-3xl cursor-pointer"
-        aria-label="Fechar modal"
+const ModalWrapper = ({ children, onClose }) => {
+  const handleContentClick = (e) => {
+    e.stopPropagation(); // Impede clique ou toque dentro do modal de fechá-lo
+  };
+
+  return (
+    <div
+      className="fixed inset-0 flex items-center justify-center z-50"
+      style={{
+        backdropFilter: "blur(8px)",
+        WebkitBackdropFilter: "blur(8px)",
+      }}
+      onClick={onClose}
+      onTouchStart={onClose}
+    >
+      <div
+        className="bg-[#0a1e3f] rounded-2xl p-8 max-w-md w-full relative shadow-2xl text-white"
+        onClick={handleContentClick}
+        onTouchStart={handleContentClick}
       >
-        &times;
-      </button>
-      {children}
+        <button
+          onClick={onClose}
+          className="absolute top-3 right-4 text-white hover:text-gray-300 text-3xl cursor-pointer"
+          aria-label="Fechar modal"
+        >
+          &times;
+        </button>
+        {children}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default AppShowcase;

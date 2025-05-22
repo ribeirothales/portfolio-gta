@@ -12,7 +12,7 @@ const AboutSection = () => {
                   alt=""
                 />
               </div>
-              <div className="rg text-justify w-full xl:w-[32%] md:w-[45%] py-10 xl:py-20 md:py-30">
+              <div className="rg text-justify ml-[0px] xl:ml-[100px] md:ml-[0px] sm:ml-[0px]  w-full xl:w-[32%] md:w-[45%] py-10 xl:py-20 md:py-30">
                 <div className="justify-center items-center text-center xl:text-start md:text-center">
                   <h1 className="text-4xl xl:text-8xl md:text-6xl [@media(min-width:2560px)]:text-[150px] [@media(min-width:3840px)]:text-[150px]">Saiba mais</h1>
                   <h1 className="text-4xl xl:text-8xl md:text-6xl ml-10 xl:ml-30 md:ml-0 [@media(min-width:2560px)]:text-[150px] [@media(min-width:3840px)]:text-[150px]">sobre mim</h1>
