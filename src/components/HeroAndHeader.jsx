@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import "remixicon/fonts/remixicon.css";
-
+import { Mail, Github, Linkedin } from 'lucide-react';
 
 
 const HeroAndHeader = ({ onLoadComplete }) => {
@@ -10,6 +10,12 @@ const HeroAndHeader = ({ onLoadComplete }) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [menuVisible, setMenuVisible] = useState(false);
     const menuRef = useRef(null);
+
+    const socialLinks = [
+        { icon: Mail, href: 'mailto:thales.o.ribeiro@gmail.com', label: 'Mail' },
+        { icon: Linkedin, href: 'https://www.linkedin.com/in/ribeirothales/', label: 'Linkedin' },
+        { icon: Github, href: 'https://github.com/ribeirothales', label: 'Github' },
+    ];
 
     useEffect(() => {
         if (menuOpen) {
@@ -28,7 +34,7 @@ const HeroAndHeader = ({ onLoadComplete }) => {
     let [showContent, setShowContent] = useState(false);
     useGSAP(() => {
         const tl = gsap.timeline();
-        
+
 
         tl.to(".vi-mask-group", {
             rotate: 10,
@@ -43,16 +49,19 @@ const HeroAndHeader = ({ onLoadComplete }) => {
             transformOrigin: "50% 50%",
             opacity: 0,
             onComplete: function () {
-                
                 if (this.progress() >= 0.9) {
-                    
-                    document.querySelector(".svg").remove();
+                    const svgElement = document.querySelector(".svg");
+
+                    if (svgElement) {
+                        svgElement.remove();
+                    }
+
+                    onLoadComplete?.();
                     setShowContent(true);
                     this.kill();
                 }
-                    
-            
             },
+
         });
     });
 
@@ -149,7 +158,7 @@ const HeroAndHeader = ({ onLoadComplete }) => {
         }
     }, [menuOpen, menuVisible]);
 
-    
+
 
     return (
         <>
@@ -226,7 +235,7 @@ const HeroAndHeader = ({ onLoadComplete }) => {
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" className="block hover:text-purple-400">
+                                                    <a href="#cntnr" className="block hover:text-purple-400">
                                                         Sobre Mim
                                                     </a>
                                                 </li>
@@ -258,50 +267,51 @@ const HeroAndHeader = ({ onLoadComplete }) => {
                                 src="./bg.png"
                                 alt=""
                             />
-                            <div className="text text-white flex flex-col gap-3 absolute md:top-20 sm:top-32 top-30 left-[55%] md:left-[50%] -translate-x-1/2 scale-[1.4] rotate-[-10deg]">
-                                <h1 className="text-[3rem] sm:text-[8rem] md:text-[6rem] leading-none -ml-10 sm:-ml-20 md:-ml-10">
-                                    Thales
-                                </h1>
-                                <h1 className="text-[3rem] sm:text-[8rem] md:text-[6rem] leading-none ml-5 sm:ml-10 md:ml-20">
-                                    Ribeiro
-                                </h1>
-                                <h1 className="text-[3rem] sm:text-[8rem] md:text-[6rem] leading-none -ml-10 sm:-ml-20 md:-ml-10">
-                                    Developer
-                                </h1>
-                            </div>
-                            {/* Imagem centralizada e elevada em todos os dispositivos */}
-                            <div className="absolute w-full flex justify-center items-center left-32 bottom-15 sm:bottom-24 md:bottom-0">
+                            <img
+                                className="absolute hidden justify-center items-center sm:flex text left-[25%] xl:left-[40%] bottom-[45%] xl:bottom-[42%] w-[50%] xl:w-[19.5%]  rotate-[-20deg]"
+                                src="./logo-name.png"
+                                alt=""
+                            />
+
+                            <div className="absolute hidden w-full sm:flex justify-center items-center bottom-10">
                                 <img
                                     className="character 
-                    w-[70%] sm:w-[35%] md:w-[17.5%] 
-                    md:absolute md:left-[50.5%] md:-translate-x-1/2 md:-bottom-[150%]
-                    scale-[1.8] sm:scale-[1.9] md:scale-[2] rotate-[-20deg]"
-                                    src="./man.png"
+                    w-[50%] xl:w-[17.5%] sticky left-[50%] 
+                    scale-[10] rotate-[-20deg]"
+                                    src="./man3.png"
                                     alt=""
                                 />
                             </div>
+                            <div className="flex w-[190%] justify-center top-40 sm:hidden absolute left-1/2 -translate-x-1/2">
+                                <img
+                                    src="./man-mob.png"
+                                    alt="Imagem Mobile"
+                                    className="w-[70%]"
+                                />
+                            </div>
+
                         </div>
                         <div className="btmbar text-white absolute bottom-0 left-0 w-full py-10 md:py-15 px-10 bg-gradient-to-t from-black to-transparent">
-                            <div className="flex gap-2 items-center flex-col-reverse sm:flex-row sm:items-center mt-25 md:mt-10 sm:mt-0">
-                                <h3 className="text-20 md:text-xl font-[Helvetica_Now_Display]">
-                                    Role para baixo
-                                </h3>
-                                <i className="text-xl md:text-4xl ri-arrow-down-line"></i>
+                            <div className="flex gap-6 items-center flex-row xl:flex-row justify-center md:justify-start xl:items-center mt-25 md:mt-10 sm:mt-0">
+                                {socialLinks.map(social => (
+                                    <a key={social.label} href={social.href} target="_blank" aria-label={social.label} className="hover:text-brand transition-colors">
+                                        <social.icon size={28} />
+                                    </a>
+                                ))}
                             </div>
                             <img
-                                className="absolute h-[30px] md:h-[55px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                                className="absolute h-[30px] md:h-[35px] xl:h-[55px] top-[50%] md:top-[35%] xl:top-[60%] left-[49.6%] md:left-1/2 -translate-x-1/2 -translate-y-1/2"
                                 src="./stacks.png"
                                 alt=""
                             />
                         </div>
-
                     </div>
                 </div>
             )}
 
-            
+
         </>
-        
+
     );
 };
 
