@@ -70,7 +70,7 @@ const AppShowcase = () => {
   }, []);
 
   return (
-    <section id="work" ref={sectionRef} className="app-showcase font-[Poppins]">
+    <section id="work" ref={sectionRef} className="app-showcase font-[Poppins] mt-[250px]">
       <div className="w-full">
         <div className="showcaselayout">
           <div ref={rydeRef} className="first-project-wrapper">
