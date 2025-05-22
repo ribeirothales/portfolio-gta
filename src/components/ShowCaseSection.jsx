@@ -12,6 +12,24 @@ const AppShowcase = () => {
   const ycDirectoryRef = useRef(null);
 
   const [openModalId, setOpenModalId] = useState(null);
+  const recentlyClosedRef = useRef(false);
+  const closingTimeout = useRef(null);
+
+  const openModal = (id) => {
+    if (recentlyClosedRef.current || openModalId !== null) return;
+    setOpenModalId(id);
+  };
+
+  const closeModal = () => {
+    if (closingTimeout.current) {
+      clearTimeout(closingTimeout.current);
+    }
+    setOpenModalId(null);
+    recentlyClosedRef.current = true;
+    closingTimeout.current = setTimeout(() => {
+      recentlyClosedRef.current = false;
+    }, 500); // tempo aumentado
+  };
 
   useEffect(() => {
     if (openModalId !== null) {
@@ -50,9 +68,6 @@ const AppShowcase = () => {
       );
     });
   }, []);
-
-  const openModal = (id) => setOpenModalId(id);
-  const closeModal = () => setOpenModalId(null);
 
   return (
     <section id="work" ref={sectionRef} className="app-showcase font-[Poppins]">
@@ -176,9 +191,25 @@ const AppShowcase = () => {
 };
 
 const ModalWrapper = ({ children, onClose }) => {
-  const handleContentClick = (e) => {
-    e.stopPropagation(); // Impede clique ou toque dentro do modal de fechá-lo
-  };
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
+        e.stopPropagation();
+        e.preventDefault();
+        onClose();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside, true);
+    document.addEventListener("touchstart", handleClickOutside, { passive: false });
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside, true);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [onClose]);
 
   return (
     <div
@@ -187,13 +218,10 @@ const ModalWrapper = ({ children, onClose }) => {
         backdropFilter: "blur(8px)",
         WebkitBackdropFilter: "blur(8px)",
       }}
-      onClick={onClose}
-      onTouchStart={onClose}
     >
       <div
+        ref={modalRef}
         className="bg-[#0a1e3f] rounded-2xl p-8 max-w-md w-full relative shadow-2xl text-white"
-        onClick={handleContentClick}
-        onTouchStart={handleContentClick}
       >
         <button
           onClick={onClose}
