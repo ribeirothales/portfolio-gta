@@ -15,7 +15,7 @@ function App() {
         <div className="site-wrapper">
           <AboutSection />
           <ShowCaseSection />
-          <Contact />
+          {/* <Contact /> */}
           <Footer />
         </div>
       )}
