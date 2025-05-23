@@ -34,10 +34,10 @@ const MobileOptimizer = () => {
   }, [gl, scene]);
   
   // Reduz a taxa de renderização para dispositivos muito lentos
+  // Removida a chamada manual a gl.render que causava o erro
   useFrame((_, delta) => {
     if (delta > 0.1) {
-      gl.render(scene, scene.camera);
-      return true; // Pula um frame
+      return true; // Pula um frame quando o delta é muito alto
     }
     return null;
   });
