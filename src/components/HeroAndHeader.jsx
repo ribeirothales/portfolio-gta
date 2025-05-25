@@ -68,7 +68,7 @@ const HeroAndHeader = ({ onLoadComplete }) => {
                 }
             },
         });
-    // Passa o ref do container SVG como escopo e observa showContent para re-executar se necessário (embora não deva)
+        // Passa o ref do container SVG como escopo e observa showContent para re-executar se necessário (embora não deva)
     }, { scope: svgContainerRef, dependencies: [onLoadComplete] });
 
     // Animação do conteúdo principal após o loader
@@ -144,7 +144,7 @@ const HeroAndHeader = ({ onLoadComplete }) => {
             }
         };
 
-    // Depende de showContent para executar quando o conteúdo principal for exibido
+        // Depende de showContent para executar quando o conteúdo principal for exibido
     }, [showContent]);
 
     // Animação do menu lateral com GSAP
@@ -163,14 +163,14 @@ const HeroAndHeader = ({ onLoadComplete }) => {
     return (
         <>
             {/* SVG Loader - Renderizado condicionalmente */}
-            {/* Adicionado o ref aqui */} 
+            {/* Adicionado o ref aqui */}
             {!showContent && (
                 <div ref={svgContainerRef} className="svg flex items-center justify-center fixed top-0 left-0 z-[100] w-full h-screen overflow-hidden bg-[#000]">
                     <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
                         <defs>
                             <mask id="viMask">
                                 <rect width="100%" height="100%" fill="black" />
-                                <g className="vi-mask-group"> {/* O alvo da animação */} 
+                                <g className="vi-mask-group"> {/* O alvo da animação */}
                                     <text
                                         x="50%"
                                         y="50%"
@@ -191,6 +191,8 @@ const HeroAndHeader = ({ onLoadComplete }) => {
                             height="100%"
                             preserveAspectRatio="xMidYMid slice"
                             mask="url(#viMask)"
+                            draggable={false}
+                            onContextMenu={(e) => e.preventDefault()}
                         />
                     </svg>
                 </div>
@@ -201,7 +203,7 @@ const HeroAndHeader = ({ onLoadComplete }) => {
                 <div className="navbar fixed top-0 left-0 z-50 w-full py-5 md:py-10 px-5 md:px-10 pointer-events-none">
                     <div className="logo flex gap-7 justify-between items-center">
                         <h3 className="text-xl md:text-4xl -mt-[8px] leading-none text-white pointer-events-auto">
-                           <a href="#" className="cursor-pointer">FULLSTACK</a> 
+                            <a href="#" className="cursor-pointer">FULLSTACK</a>
                         </h3>
                         <div
                             className="group flex h-10 w-10 md:h-13 md:w-13 cursor-pointer items-center justify-center rounded-3xl p-2 hover:bg-gray-600 transition-colors z-50 pointer-events-auto"
@@ -219,7 +221,7 @@ const HeroAndHeader = ({ onLoadComplete }) => {
                             </div>
                         </div>
 
-                        {/* Menu Overlay */} 
+                        {/* Menu Overlay */}
                         {menuVisible && (
                             <>
                                 <div
@@ -234,9 +236,9 @@ const HeroAndHeader = ({ onLoadComplete }) => {
                                 >
                                     <ul className="space-y-4 mt-20 ml-10 text-[40px] text-white">
                                         <li><a href="#" className="block hover:text-purple-400" onClick={() => setMenuOpen(false)}>Home</a></li>
-                                        <li><a href="#about" className="block hover:text-purple-400"  onClick={() => setMenuOpen(false)} >Sobre Mim</a></li>
-                                        <li><a href="#work" className="block hover:text-purple-400"  onClick={() => setMenuOpen(false)}>Projetos</a></li>
-                                        <li><a href="#contact" className="block hover:text-purple-400"  onClick={() => setMenuOpen(false)}>Contato</a></li>
+                                        <li><a href="#about" className="block hover:text-purple-400" onClick={() => setMenuOpen(false)} >Sobre Mim</a></li>
+                                        <li><a href="#work" className="block hover:text-purple-400" onClick={() => setMenuOpen(false)}>Projetos</a></li>
+                                        <li><a href="#contact" className="block hover:text-purple-400" onClick={() => setMenuOpen(false)}>Contato</a></li>
                                     </ul>
                                 </div>
                             </>
@@ -249,18 +251,23 @@ const HeroAndHeader = ({ onLoadComplete }) => {
             {showContent && (
                 <div className="main w-full rotate-[-10deg] scale-[1.7]">
                     <div className="landing overflow-hidden relative w-full h-screen bg-black">
-                        {/* A navbar NÃO está mais aqui */} 
+                        {/* A navbar NÃO está mais aqui */}
 
                         <div className="imagesdiv relative overflow-hidden w-full h-screen">
                             {/* ... imagens (sky, bg, character, logo-name, man-mob) como estavam */}
-                            <img className="absolute sky scale-[1.5] rotate-[-20deg] top-0 left-0 w-full h-full object-cover" src="./sky.png" alt="" />
-                            <img className="absolute scale-[1.8] rotate-[-3deg] bg top-0 left-0 w-full h-full object-cover" src="./bg.png" alt="" />
-                            <img className="absolute hidden justify-center items-center sm:flex text left-[25%] xl:left-[40%] bottom-[45%] xl:bottom-[42%] w-[50%] xl:w-[19.5%] rotate-[-20deg]" src="./logo-name.png" alt="" />
+                            <img className="absolute sky scale-[1.5] rotate-[-20deg] top-0 left-0 w-full h-full object-cover" src="./sky.png" alt="" draggable={false}
+                                onContextMenu={(e) => e.preventDefault()} />
+                            <img className="absolute scale-[1.8] rotate-[-3deg] bg top-0 left-0 w-full h-full object-cover" src="./bg.png" alt=""                 draggable={false}
+                  onContextMenu={(e) => e.preventDefault()}/>
+                            <img className="absolute hidden justify-center items-center sm:flex text left-[25%] xl:left-[40%] bottom-[45%] xl:bottom-[42%] w-[50%] xl:w-[19.5%] rotate-[-20deg]" src="./logo-name.png" alt=""                 draggable={false}
+                  onContextMenu={(e) => e.preventDefault()} />
                             <div className="absolute hidden w-full sm:flex justify-center items-center bottom-10">
-                                <img className="character w-[50%] xl:w-[17.5%] sticky left-[50%] scale-[10] rotate-[-20deg]" src="./man3.png" alt="" />
+                                <img className="character w-[50%] xl:w-[17.5%] sticky left-[50%] scale-[10] rotate-[-20deg]" src="./man3.png" alt="" draggable={false}
+                                    onContextMenu={(e) => e.preventDefault()} />
                             </div>
                             <div className="flex w-[190%] justify-center top-40 sm:hidden absolute left-1/2 -translate-x-1/2">
-                                <img src="./man-mob.png" alt="Imagem Mobile" className="w-[70%]" />
+                                <img src="./man-mob.png" alt="Imagem Mobile" className="w-[70%]" draggable={false}
+                                    onContextMenu={(e) => e.preventDefault()} />
                             </div>
                         </div>
                         <div className="btmbar text-white absolute bottom-0 left-0 w-full py-10 md:py-15 px-10 bg-gradient-to-t from-[#061329] to-transparent">
@@ -272,7 +279,8 @@ const HeroAndHeader = ({ onLoadComplete }) => {
                                     </a>
                                 ))}
                             </div>
-                            <img className="absolute h-[30px] md:h-[35px] xl:h-[55px] top-[50%] md:top-[35%] xl:top-[60%] left-[49.6%] md:left-1/2 -translate-x-1/2 -translate-y-1/2" src="./stacks.png" alt="" />
+                            <img className="absolute h-[30px] md:h-[35px] xl:h-[55px] top-[50%] md:top-[35%] xl:top-[60%] left-[49.6%] md:left-1/2 -translate-x-1/2 -translate-y-1/2" src="./stacks.png" alt="" draggable={false}
+                                onContextMenu={(e) => e.preventDefault()} />
                         </div>
                     </div>
                 </div>

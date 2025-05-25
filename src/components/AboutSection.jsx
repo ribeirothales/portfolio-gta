@@ -10,6 +10,8 @@ const AboutSection = () => {
                   className="relative md:absolute justify-center mt-[0%] xl:mt-[0%] lg:mt[%] md:mt-[100%] sm:mt-[0%]  top-[18%] xl:top-[18%] md:top-[38%]"
                   src="./imag.png"
                   alt=""
+                  draggable={false}
+                  onContextMenu={(e) => e.preventDefault()}
                 />
               </div>
               <div className="rg text-justify ml-[0px] xl:ml-[100px] md:ml-[0px] sm:ml-[0px]  w-full xl:w-[32%] md:w-[45%] py-10 xl:py-20 md:py-30">
