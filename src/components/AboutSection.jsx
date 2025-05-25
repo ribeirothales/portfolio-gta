@@ -3,7 +3,7 @@ import "remixicon/fonts/remixicon.css";
 const AboutSection = () => {
 
     return (
-        <div className="w-full mt-[3%] mb-[3%] about-me h-[100%] md:h-[100%] xl:h-screen sm:h-screen flex items-center justify-center bg-#061329 testingg" id="about">
+        <div id="about" className="w-full mt-[3%] mb-[3%] about-me h-[100%] md:h-[100%] xl:h-screen sm:h-screen flex items-center justify-center bg-#061329" >
             <div className="cntnr flex flex-col md:flex-row text-white w-full h-[100%] px-5 md:px-0">
               <div className="limg relative w-full md:w-1/2 h-1/2 md:h-full">
                 <img

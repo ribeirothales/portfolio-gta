@@ -201,7 +201,7 @@ const HeroAndHeader = ({ onLoadComplete }) => {
                 <div className="navbar fixed top-0 left-0 z-50 w-full py-5 md:py-10 px-5 md:px-10 pointer-events-none">
                     <div className="logo flex gap-7 justify-between items-center">
                         <h3 className="text-xl md:text-4xl -mt-[8px] leading-none text-white pointer-events-auto">
-                            FULLSTACK
+                           <a href="#" className="cursor-pointer">FULLSTACK</a> 
                         </h3>
                         <div
                             className="group flex h-10 w-10 md:h-13 md:w-13 cursor-pointer items-center justify-center rounded-3xl p-2 hover:bg-gray-600 transition-colors z-50 pointer-events-auto"
@@ -233,10 +233,10 @@ const HeroAndHeader = ({ onLoadComplete }) => {
                                     style={{ transform: "translateX(100%)" }}
                                 >
                                     <ul className="space-y-4 mt-20 ml-10 text-[40px] text-white">
-                                        <li><a href="#" className="block hover:text-purple-400">Home</a></li>
-                                        <li><a href="#" className="block hover:text-purple-400">Sobre Mim</a></li>
-                                        <li><a href="#projects" className="block hover:text-purple-400">Projetos</a></li>
-                                        <li><a href="#" className="block hover:text-purple-400">Contato</a></li>
+                                        <li><a href="#" className="block hover:text-purple-400" onClick={() => setMenuOpen(false)}>Home</a></li>
+                                        <li><a href="#about" className="block hover:text-purple-400"  onClick={() => setMenuOpen(false)} >Sobre Mim</a></li>
+                                        <li><a href="#work" className="block hover:text-purple-400"  onClick={() => setMenuOpen(false)}>Projetos</a></li>
+                                        <li><a href="#contact" className="block hover:text-purple-400"  onClick={() => setMenuOpen(false)}>Contato</a></li>
                                     </ul>
                                 </div>
                             </>
