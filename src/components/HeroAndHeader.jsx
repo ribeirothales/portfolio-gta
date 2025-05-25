@@ -10,6 +10,7 @@ const HeroAndHeader = ({ onLoadComplete }) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [menuVisible, setMenuVisible] = useState(false);
     const menuRef = useRef(null);
+    const svgContainerRef = useRef(null); // <-- Ref para o container do SVG
 
     const socialLinks = [
         { icon: Mail, href: 'mailto:thales.o.ribeiro@gmail.com', label: 'Mail' },
@@ -32,9 +33,13 @@ const HeroAndHeader = ({ onLoadComplete }) => {
     }, [menuOpen]);
 
     let [showContent, setShowContent] = useState(false);
-    useGSAP(() => {
-        const tl = gsap.timeline();
 
+    // Animação de entrada do SVG Loader
+    useGSAP(() => {
+        // Verifica se o container do SVG existe antes de tentar animar
+        if (!svgContainerRef.current) return;
+
+        const tl = gsap.timeline();
 
         tl.to(".vi-mask-group", {
             rotate: 10,
@@ -49,30 +54,33 @@ const HeroAndHeader = ({ onLoadComplete }) => {
             transformOrigin: "50% 50%",
             opacity: 0,
             onComplete: function () {
+                // Verifica o progresso para evitar execuções múltiplas (ex: StrictMode)
                 if (this.progress() >= 0.9) {
-                    const svgElement = document.querySelector(".svg");
-
-                    if (svgElement) {
-                        svgElement.remove();
-                    }
-
+                    // Não remove mais o SVG aqui, apenas controla a visibilidade com showContent
                     onLoadComplete?.();
                     setShowContent(true);
-                    this.kill();
+                    // Não precisa mais remover o SVG explicitamente se ele está condicionalmente renderizado
+                    // const svgElement = svgContainerRef.current;
+                    // if (svgElement) {
+                    //     svgElement.style.display = 'none'; // Ou remove se preferir
+                    // }
+                    this.kill(); // Mata a timeline para evitar problemas
                 }
             },
-
         });
-    });
+    // Passa o ref do container SVG como escopo e observa showContent para re-executar se necessário (embora não deva)
+    }, { scope: svgContainerRef, dependencies: [onLoadComplete] });
 
+    // Animação do conteúdo principal após o loader
     useGSAP(() => {
+        // Só executa se showContent for true
         if (!showContent) return;
 
         gsap.to(".main", {
             scale: 1,
             rotate: 0,
             duration: 1,
-            delay: "-1",
+            delay: "-1", // Ajuste o delay conforme necessário após a mudança
             ease: "Expo.easeInOut",
         });
 
@@ -110,11 +118,11 @@ const HeroAndHeader = ({ onLoadComplete }) => {
             ease: "Expo.easeInOut",
         });
 
-        const main = document.querySelector(".main");
+        const mainElement = document.querySelector(".main");
 
-        main?.addEventListener("mousemove", function (e) {
+        const handleMouseMove = (e) => {
             const xMove = (e.clientX / window.innerWidth - 0.5) * 40;
-            gsap.to(".main .text", {
+            gsap.to(".main .text", { // Certifique-se que .text está dentro de .main
                 x: `${xMove * 0.4}%`,
             });
             gsap.to(".sky", {
@@ -123,7 +131,20 @@ const HeroAndHeader = ({ onLoadComplete }) => {
             gsap.to(".bg", {
                 x: xMove * 1.7,
             });
-        });
+        };
+
+        if (mainElement) {
+            mainElement.addEventListener("mousemove", handleMouseMove);
+        }
+
+        // Cleanup function para remover o event listener
+        return () => {
+            if (mainElement) {
+                mainElement.removeEventListener("mousemove", handleMouseMove);
+            }
+        };
+
+    // Depende de showContent para executar quando o conteúdo principal for exibido
     }, [showContent]);
 
     // Animação do menu lateral com GSAP
@@ -131,30 +152,9 @@ const HeroAndHeader = ({ onLoadComplete }) => {
         if (!menuRef.current) return;
 
         if (menuOpen) {
-            // Animação para abrir o menu (da direita para a esquerda)
-            gsap.fromTo(
-                menuRef.current,
-                { x: "100%" },
-                {
-                    x: "0%",
-                    duration: 1,
-                    ease: "power3.out"
-                }
-            );
+            gsap.fromTo(menuRef.current, { x: "100%" }, { x: "0%", duration: 1, ease: "power3.out" });
         } else if (menuVisible) {
-            // Animação para fechar o menu (da esquerda para a direita)
-            gsap.to(
-                menuRef.current,
-                {
-                    x: "100%",
-                    duration: 0.5,
-                    ease: "power3.in",
-                    onComplete: () => {
-                        // Oculta o menu após a animação de fechamento
-                        setMenuVisible(false);
-                    }
-                }
-            );
+            gsap.to(menuRef.current, { x: "100%", duration: 0.5, ease: "power3.in", onComplete: () => setMenuVisible(false) });
         }
     }, [menuOpen, menuVisible]);
 
@@ -162,157 +162,124 @@ const HeroAndHeader = ({ onLoadComplete }) => {
 
     return (
         <>
-            <div className="svg flex items-center justify-center fixed top-0 left-0 z-[100] w-full h-screen overflow-hidden bg-[#000]">
-                <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-                    <defs>
-                        <mask id="viMask">
-                            <rect width="100%" height="100%" fill="black" />
-                            <g className="vi-mask-group">
-                                <text
-                                    x="50%"
-                                    y="50%"
-                                    fontSize="250"
-                                    textAnchor="middle"
-                                    fill="white"
-                                    dominantBaseline="middle"
-                                    fontFamily="Arial Black"
-                                >
-                                    TR
-                                </text>
-                            </g>
-                        </mask>
-                    </defs>
-                    <image
-                        href="./bg.png"
-                        width="100%"
-                        height="100%"
-                        preserveAspectRatio="xMidYMid slice"
-                        mask="url(#viMask)"
-                    />
-                </svg>
-            </div>
+            {/* SVG Loader - Renderizado condicionalmente */}
+            {/* Adicionado o ref aqui */} 
+            {!showContent && (
+                <div ref={svgContainerRef} className="svg flex items-center justify-center fixed top-0 left-0 z-[100] w-full h-screen overflow-hidden bg-[#000]">
+                    <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                        <defs>
+                            <mask id="viMask">
+                                <rect width="100%" height="100%" fill="black" />
+                                <g className="vi-mask-group"> {/* O alvo da animação */} 
+                                    <text
+                                        x="50%"
+                                        y="50%"
+                                        fontSize="250"
+                                        textAnchor="middle"
+                                        fill="white"
+                                        dominantBaseline="middle"
+                                        fontFamily="Arial Black"
+                                    >
+                                        TR
+                                    </text>
+                                </g>
+                            </mask>
+                        </defs>
+                        <image
+                            href="./bg.png"
+                            width="100%"
+                            height="100%"
+                            preserveAspectRatio="xMidYMid slice"
+                            mask="url(#viMask)"
+                        />
+                    </svg>
+                </div>
+            )}
+
+            {/* Navbar MOVIDA PARA FORA da div.main, com classes de fixação e pointer-events */}
             {showContent && (
-                <div className="main w-full rotate-[-10deg] scale-[1.7]">
-                    <div className="landing overflow-hidden relative w-full h-screen bg-black">
-                        <div className="navbar absolute top-0 left-0 z-[10] w-full py-5 md:py-10 px-5 md:px-10">
-                            <div className="logo flex gap-7 justify-between items-center p-4">
-                                <h3 className="text-xl md:text-4xl -mt-[8px] leading-none text-white">
-                                    FULLSTACK
-                                </h3>
+                <div className="navbar fixed top-0 left-0 z-50 w-full py-5 md:py-10 px-5 md:px-10 pointer-events-none">
+                    <div className="logo flex gap-7 justify-between items-center">
+                        <h3 className="text-xl md:text-4xl -mt-[8px] leading-none text-white pointer-events-auto">
+                            FULLSTACK
+                        </h3>
+                        <div
+                            className="group flex h-10 w-10 md:h-13 md:w-13 cursor-pointer items-center justify-center rounded-3xl p-2 hover:bg-gray-600 transition-colors z-50 pointer-events-auto"
+                            onClick={() => setMenuOpen(!menuOpen)}
+                        >
+                            <div className="relative">
+                                <span
+                                    className={`block h-1 w-6 md:w-8 origin-center rounded-full bg-white transition-transform duration-300 ease-in-out ${menuOpen ? "translate-y-1.5 rotate-45" : ""
+                                        }`}
+                                ></span>
+                                <span
+                                    className={`block h-1 w-4 md:w-6 mt-2 origin-center rounded-full bg-white transition-all duration-300 ease-in-out ${menuOpen ? "w-6 md:w-8 -translate-y-1.5 -rotate-45" : ""
+                                        }`}
+                                ></span>
+                            </div>
+                        </div>
+
+                        {/* Menu Overlay */} 
+                        {menuVisible && (
+                            <>
                                 <div
-                                    className="group flex h-10 w-10 md:h-13 md:w-13 cursor-pointer items-center justify-center rounded-3xl p-2 hover:bg-gray-600 transition-colors z-50"
-                                    onClick={() => setMenuOpen(!menuOpen)}
+                                    className={`fixed top-0 left-0 w-full h-full z-30 bg-black/50 backdrop-blur-3xl pointer-events-auto ${menuOpen ? "opacity-100" : "opacity-0"}`}
+                                    onClick={() => setMenuOpen(false)}
+                                    style={{ transition: "opacity 0.5s ease" }}
+                                />
+                                <div
+                                    ref={menuRef}
+                                    className="fixed top-0 right-0 z-40 h-full w-4/5 md:w-2/4 bg-gray-800 shadow-lg p-4 pointer-events-auto"
+                                    style={{ transform: "translateX(100%)" }}
                                 >
-                                    <div className="relative">
-                                        <span
-                                            className={`block h-1 w-6 md:w-8 origin-center rounded-full bg-white transition-transform duration-300 ease-in-out ${menuOpen ? "translate-y-1.5 rotate-45" : ""
-                                                }`}
-                                        ></span>
-                                        <span
-                                            className={`block h-1 w-4 md:w-6 mt-2 origin-center rounded-full bg-white transition-all duration-300 ease-in-out ${menuOpen ? "w-6 md:w-8 -translate-y-1.5 -rotate-45" : ""
-                                                }`}
-                                        ></span>
-                                    </div>
+                                    <ul className="space-y-4 mt-20 ml-10 text-[40px] text-white">
+                                        <li><a href="#" className="block hover:text-purple-400">Home</a></li>
+                                        <li><a href="#" className="block hover:text-purple-400">Sobre Mim</a></li>
+                                        <li><a href="#projects" className="block hover:text-purple-400">Projetos</a></li>
+                                        <li><a href="#" className="block hover:text-purple-400">Contato</a></li>
+                                    </ul>
                                 </div>
-
-                                {/* Menu Overlay - só aparece quando menuVisible é true */}
-                                {menuVisible && (
-                                    <>
-                                        <div
-                                            className={`fixed top-0 left-0 w-full h-full z-30 bg-black/50 backdrop-blur-3xl ${menuOpen ? "opacity-100" : "opacity-0"}`}
-                                            onClick={() => setMenuOpen(false)}
-                                            style={{ transition: "opacity 0.5s ease" }}
-                                        />
-                                        <div
-                                            ref={menuRef}
-                                            className="fixed top-0 right-0 z-40 h-full w-4/5 md:w-2/4 bg-gray-800 shadow-lg p-4"
-                                            style={{ transform: "translateX(100%)" }}
-                                        >
-                                            <ul className="space-y-4 mt-20 ml-10 text-[40px] text-white">
-                                                <li>
-                                                    <a href="#" className="block hover:text-purple-400">
-                                                        Home
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#cntnr" className="block hover:text-purple-400">
-                                                        Sobre Mim
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" className="block hover:text-purple-400">
-                                                        Projetos
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" className="block hover:text-purple-400">
-                                                        Contato
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </>
-                                )}
-                            </div>
-                        </div>
-
-                        <div className="imagesdiv relative overflow-hidden w-full h-screen">
-                            <img
-                                className="absolute sky scale-[1.5] rotate-[-20deg] top-0 left-0 w-full h-full object-cover"
-                                src="./sky.png"
-                                alt=""
-                            />
-                            <img
-                                className="absolute scale-[1.8] rotate-[-3deg] bg top-0 left-0 w-full h-full object-cover"
-                                src="./bg.png"
-                                alt=""
-                            />
-                            <img
-                                className="absolute hidden justify-center items-center sm:flex text left-[25%] xl:left-[40%] bottom-[45%] xl:bottom-[42%] w-[50%] xl:w-[19.5%]  rotate-[-20deg]"
-                                src="./logo-name.png"
-                                alt=""
-                            />
-
-                            <div className="absolute hidden w-full sm:flex justify-center items-center bottom-10">
-                                <img
-                                    className="character 
-                    w-[50%] xl:w-[17.5%] sticky left-[50%] 
-                    scale-[10] rotate-[-20deg]"
-                                    src="./man3.png"
-                                    alt=""
-                                />
-                            </div>
-                            <div className="flex w-[190%] justify-center top-40 sm:hidden absolute left-1/2 -translate-x-1/2">
-                                <img
-                                    src="./man-mob.png"
-                                    alt="Imagem Mobile"
-                                    className="w-[70%]"
-                                />
-                            </div>
-
-                        </div>
-                        <div className="btmbar text-white absolute bottom-0 left-0 w-full py-10 md:py-15 px-10 bg-gradient-to-t from-[#061329] to-transparent">
-                            <div className="flex gap-6 items-center flex-row xl:flex-row justify-center md:justify-start xl:items-center mt-25 md:mt-10 sm:mt-0">
-                                {socialLinks.map(social => (
-                                    <a key={social.label} href={social.href} target="_blank" aria-label={social.label} className="hover:text-brand transition-colors">
-                                        <social.icon size={28} />
-                                    </a>
-                                ))}
-                            </div>
-                            <img
-                                className="absolute h-[30px] md:h-[35px] xl:h-[55px] top-[50%] md:top-[35%] xl:top-[60%] left-[49.6%] md:left-1/2 -translate-x-1/2 -translate-y-1/2"
-                                src="./stacks.png"
-                                alt=""
-                            />
-                        </div>
+                            </>
+                        )}
                     </div>
                 </div>
             )}
 
+            {/* div.main SEM a navbar dentro e SEM padding-top adicionado */}
+            {showContent && (
+                <div className="main w-full rotate-[-10deg] scale-[1.7]">
+                    <div className="landing overflow-hidden relative w-full h-screen bg-black">
+                        {/* A navbar NÃO está mais aqui */} 
 
+                        <div className="imagesdiv relative overflow-hidden w-full h-screen">
+                            {/* ... imagens (sky, bg, character, logo-name, man-mob) como estavam */}
+                            <img className="absolute sky scale-[1.5] rotate-[-20deg] top-0 left-0 w-full h-full object-cover" src="./sky.png" alt="" />
+                            <img className="absolute scale-[1.8] rotate-[-3deg] bg top-0 left-0 w-full h-full object-cover" src="./bg.png" alt="" />
+                            <img className="absolute hidden justify-center items-center sm:flex text left-[25%] xl:left-[40%] bottom-[45%] xl:bottom-[42%] w-[50%] xl:w-[19.5%] rotate-[-20deg]" src="./logo-name.png" alt="" />
+                            <div className="absolute hidden w-full sm:flex justify-center items-center bottom-10">
+                                <img className="character w-[50%] xl:w-[17.5%] sticky left-[50%] scale-[10] rotate-[-20deg]" src="./man3.png" alt="" />
+                            </div>
+                            <div className="flex w-[190%] justify-center top-40 sm:hidden absolute left-1/2 -translate-x-1/2">
+                                <img src="./man-mob.png" alt="Imagem Mobile" className="w-[70%]" />
+                            </div>
+                        </div>
+                        <div className="btmbar text-white absolute bottom-0 left-0 w-full py-10 md:py-15 px-10 bg-gradient-to-t from-[#061329] to-transparent">
+                            {/* ... barra inferior (social links, stacks.png) como estava */}
+                            <div className="flex gap-6 items-center flex-row xl:flex-row justify-center md:justify-start xl:items-center mt-25 md:mt-10 sm:mt-0">
+                                {socialLinks.map(social => (
+                                    <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label} className="hover:text-brand transition-colors">
+                                        <social.icon size={28} />
+                                    </a>
+                                ))}
+                            </div>
+                            <img className="absolute h-[30px] md:h-[35px] xl:h-[55px] top-[50%] md:top-[35%] xl:top-[60%] left-[49.6%] md:left-1/2 -translate-x-1/2 -translate-y-1/2" src="./stacks.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
-
     );
 };
 
 export default HeroAndHeader;
+
