@@ -4,6 +4,7 @@ import HeroAndHeader from './components/HeroAndHeader';
 import AboutSection from './components/AboutSection';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Curriculum from './components/Curriculum';
 
 function App() {
   const [showContent, setShowContent] = useState(false);
@@ -14,6 +15,7 @@ function App() {
       {showContent && (
         <div className="site-wrapper">
           <AboutSection />
+          <Curriculum />
           <ShowCaseSection />
           <Contact />
           <Footer />
