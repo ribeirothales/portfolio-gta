@@ -237,6 +237,7 @@ const HeroAndHeader = ({ onLoadComplete }) => {
                                     <ul className="space-y-4 mt-20 ml-10 text-[40px] text-white">
                                         <li><a href="#" className="block hover:text-purple-400" onClick={() => setMenuOpen(false)}>Home</a></li>
                                         <li><a href="#about" className="block hover:text-purple-400" onClick={() => setMenuOpen(false)} >Sobre Mim</a></li>
+                                        <li><a href="#curriculum" className="block hover:text-purple-400" onClick={() => setMenuOpen(false)} >Currículo</a></li>
                                         <li><a href="#work" className="block hover:text-purple-400" onClick={() => setMenuOpen(false)}>Projetos</a></li>
                                         <li><a href="#contact" className="block hover:text-purple-400" onClick={() => setMenuOpen(false)}>Contato</a></li>
                                     </ul>
