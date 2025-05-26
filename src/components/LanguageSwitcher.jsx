@@ -12,7 +12,7 @@ function LanguageSwitcher() {
 
     // Lista de idiomas disponíveis
     const languages = [
-        { code: 'pt', name: 'Português do Brasil' },
+        { code: 'pt', name: 'Português' },
         { code: 'en', name: 'English' },
         { code: 'es', name: 'Español' },
     ];
