@@ -25,10 +25,5 @@
     "typename": "Escribe tu nombre",
     "email": "Escribe tu correo",
     "help": "¿Cómo puedo ayudarte?",
-    "send": "Enviar",
-    "filters": {
-        "party": "Partido:",
-        "state": "Estado:",
-        "all": "Todos"
-    }
+    "send": "Enviar"
 }

@@ -16,7 +16,6 @@
     "project3": "A questão pitagórica",
     "github": "Ver no GitHub",
     "online": "Ver projeto online",
-
     "name": "Nome",
     "message": "Mensagem",
     "success": "E-mail enviado com sucesso!",
@@ -26,11 +25,5 @@
     "typename": "Digite seu nome",
     "email": "Digite seu e-mail",
     "help": "Como posso ajudar?",
-    "send": "Enviar",
-
-    "filters": {
-        "party": "Partido:",
-        "state": "Estado:",
-        "all": "Todos"
-    }
+    "send": "Enviar"
 }
