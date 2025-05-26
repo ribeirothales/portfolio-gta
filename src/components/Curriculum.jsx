@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { FileCheck } from 'lucide-react';
 
 const Curriculum = () => {
     const handleDownload = () => {
@@ -51,8 +52,9 @@ const Curriculum = () => {
 
                     {/* Container principal inspirado na coluna esquerda da seção de contato */}
                     <div className="bg-black-100 rounded-xl p-8 flex flex-col items-center justify-center border border-[#ffffff15] relative z-10">
+                        <FileCheck />
                         <div className="mb-6 text-center">
-                            <h1 className="text-4xl md:text-5xl font-bold mb-0 mt-30 text-white text-center">
+                            <h1 className="text-4xl md:text-5xl font-bold mb-5 mt-15 text-white text-center">
                                 Curriculum Vitae
                             </h1>
                         </div>
