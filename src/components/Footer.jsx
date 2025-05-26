@@ -20,7 +20,7 @@ const Footer = () => {
                         </a>
                     ))}
                 </div>
-                <div className="flex flex-col justify-center text-xl">
+                <div className="flex flex-col justify-center text-[12px}">
                     <p className="text-center md:text-end cursor-default">
                         τί ἐστι τὸ καλόν;
                     </p>

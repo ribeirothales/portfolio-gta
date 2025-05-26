@@ -6,17 +6,38 @@ const Curriculum = () => {
     const { t, i18n } = useTranslation();
 
     useEffect(() => {
+        // Atualiza o texto do botão conforme o idioma
         document.documentElement.style.setProperty('--download-text-before', `"${t('curriculum1')}"`);
     }, [t, i18n.language]);
 
     const handleDownload = () => {
+        // Determina o nome do arquivo com base no idioma atual
+        // Exemplo: 'pt-BR' -> 'Curriculo_Thales_Ribeiro_pt-BR.pdf'
+        //          'en'    -> 'Curriculo_Thales_Ribeiro_en.pdf'
+        // Certifique-se de que os arquivos existam na pasta 'public' ou onde estiverem hospedados
+        // e que os nomes correspondam exatamente (incluindo maiúsculas/minúsculas).
+        const baseFilename = 'Curriculum_Thales_Ribeiro'; // Mantenha o nome base
+        const fileExtension = '.pdf';
+        const languageCode = i18n.language; // Obtém o código do idioma (ex: 'pt-BR', 'en')
+
+        // Constrói o nome do arquivo dinamicamente
+        // Você pode ajustar a lógica aqui se seus códigos de idioma ou nomes de arquivo forem diferentes
+        // Por exemplo, se usar 'pt' em vez de 'pt-BR', ajuste a lógica.
+        const dynamicFilename = `${baseFilename}_${languageCode}${fileExtension}`;
+        const filePath = `./${dynamicFilename}`; // Assume que os arquivos estão na pasta public
+
+        // Adiciona um pequeno atraso para o efeito visual do botão (opcional)
         setTimeout(() => {
             const link = document.createElement('a');
-            link.href = './Currículo_Thales_Ribeiro.pdf'; // ajuste conforme o local do seu arquivo
-            link.download = 'Currículo_Thales_Ribeiro.pdf';
+            link.href = filePath;
+            link.download = dynamicFilename; // Define o nome que o arquivo terá ao ser baixado
+            document.body.appendChild(link); // Necessário para Firefox
             link.click();
-        }, 2000); // 2000ms = 2 segundos
+            document.body.removeChild(link); // Limpa o link após o clique
+        }, 2000); // Reduzi o timeout, 2 segundos parece muito
     };
+
+    // --- Restante do código (Refs, estados e JSX) permanece o mesmo --- 
 
     // Refs e estados para o efeito de glowcard
     const bannerRef = useRef(null);
@@ -26,20 +47,15 @@ const Curriculum = () => {
     // Função para atualizar a posição do mouse em relação ao banner
     const handleMouseMove = (e) => {
         if (!bannerRef.current) return;
-
         const rect = bannerRef.current.getBoundingClientRect();
-
-        // Calcula a posição relativa do mouse dentro do elemento (0-1)
         const x = (e.clientX - rect.left) / rect.width;
         const y = (e.clientY - rect.top) / rect.height;
-
         setPosition({ x, y });
     };
 
     return (
-        <div className="w-full  p-6 md:p-8 lg:p-10 items-center justify-center font-[Poppins]" id='curriculum'>
+        <div className="w-full p-6 md:p-8 lg:p-10 items-center justify-center font-[Poppins]" id='curriculum'>
             <div className="w-full max-w-3xl mx-auto px-6 py-16">
-                {/* Container do glowcard com efeito de brilho baseado na posição do mouse */}
                 <div
                     ref={bannerRef}
                     className="relative group"
@@ -47,7 +63,6 @@ const Curriculum = () => {
                     onMouseEnter={() => setIsHovering(true)}
                     onMouseLeave={() => setIsHovering(false)}
                 >
-                    {/* Efeito de brilho que segue o mouse */}
                     <div
                         className="absolute -inset-0.5 bg-gradient-to-r from-[#af40ff] via-[#5b42f3] to-[#00ddeb] rounded-xl opacity-0 group-hover:opacity-70 blur-lg transition duration-500"
                         style={{
@@ -56,8 +71,6 @@ const Curriculum = () => {
                             transition: 'transform 0.3s, opacity 0.3s, background 0.3s'
                         }}
                     ></div>
-
-                    {/* Container principal inspirado na coluna esquerda da seção de contato */}
                     <div className="bg-black-100 rounded-xl p-8 flex flex-col items-center justify-center border border-[#ffffff15] relative z-10">
                         <FileCheck />
                         <div className="mb-6 text-center">
@@ -65,9 +78,7 @@ const Curriculum = () => {
                                 {t('curriculum')}
                             </h1>
                         </div>
-
                         <div className="flex justify-center items-center mt-5 mb-[10px]">
-                            {/* Botão original mantido exatamente como estava */}
                             <button onClick={handleDownload} class="group cursor-pointer relative w-[120px] h-[60px] bg-[linear-gradient(144deg,_#af40ff,_#5b42f3_50%,_#00ddeb)] text-white whitespace-nowrap flex flex-wrap rounded-lg overflow-hidden before:content-[var(--download-text-before)] before:pointer-events-none before:absolute before:z-[1] before:top-[50%] before:left-[50%] before:translate-y-[-50%] before:translate-x-[-50%] after:content-['Download'] after:absolute after:top-[50%] after:left-[-100%] after:duration-[.4s] after:pointer-events-none before:duration-[.4s] after:translate-x-[-50%] after:translate-y-[-50%] hover:before:translate-x-[100%] hover:after:left-[50%] focus:after:opacity-0 focus:before:opacity-0">
                                 <div class="w-[10px] h-[10px] blur-[5px] bg-[rgb(30,41,59)] delay-[0.2s] duration-[0.4s] hover:bg-transparent hover:delay-0 hover:duration-0 group-focus:bg-transparent group-focus:delay-[0.25s]"></div>
                                 <div class="w-[10px] h-[10px] blur-[5px] bg-[rgb(30,41,59)] delay-[0.2s] duration-[0.4s] hover:bg-transparent hover:delay-0 hover:duration-0 group-focus:bg-transparent group-focus:delay-[1s]"></div>
@@ -152,3 +163,4 @@ const Curriculum = () => {
 };
 
 export default Curriculum;
+
