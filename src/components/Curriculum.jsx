@@ -52,12 +52,12 @@ const Curriculum = () => {
                     {/* Container principal inspirado na coluna esquerda da seção de contato */}
                     <div className="bg-black-100 rounded-xl p-8 flex flex-col items-center justify-center border border-[#ffffff15] relative z-10">
                         <div className="mb-6 text-center">
-                            <h1 className="text-4xl md:text-5xl font-bold mb-5 mt-30 text-white text-center">
+                            <h1 className="text-4xl md:text-5xl font-bold mb-0 mt-30 text-white text-center">
                                 Curriculum Vitae
                             </h1>
                         </div>
 
-                        <div className="flex justify-center items-center mt-10 mb-[10px]">
+                        <div className="flex justify-center items-center mt-5 mb-[10px]">
                             {/* Botão original mantido exatamente como estava */}
                             <button onClick={handleDownload} class="group cursor-pointer relative w-[120px] h-[60px] bg-[linear-gradient(144deg,_#af40ff,_#5b42f3_50%,_#00ddeb)] text-white whitespace-nowrap flex flex-wrap rounded-lg overflow-hidden before:content-['Baixe_aqui'] before:pointer-events-none before:absolute before:z-[1] before:top-[50%] before:left-[50%] before:translate-y-[-50%] before:translate-x-[-50%] after:content-['Download'] after:absolute after:top-[50%] after:left-[-100%] after:duration-[.4s] after:pointer-events-none before:duration-[.4s] after:translate-x-[-50%] after:translate-y-[-50%] hover:before:translate-x-[100%] hover:after:left-[50%] focus:after:opacity-0 focus:before:opacity-0">
                                 <div class="w-[10px] h-[10px] blur-[5px] bg-[rgb(30,41,59)] delay-[0.2s] duration-[0.4s] hover:bg-transparent hover:delay-0 hover:duration-0 group-focus:bg-transparent group-focus:delay-[0.25s]"></div>
