@@ -52,7 +52,7 @@ const Curriculum = () => {
                     {/* Container principal inspirado na coluna esquerda da seção de contato */}
                     <div className="bg-black-100 rounded-xl p-8 flex flex-col items-center justify-center border border-[#ffffff15] relative z-10">
                         <div className="mb-6 text-center">
-                            <h1 className="text-4xl md:text-5xl font-bold mb-10 mt-5 text-white text-center">
+                            <h1 className="text-4xl md:text-5xl font-bold mb-8 mt-10 text-white text-center">
                                 Curriculum Vitae
                             </h1>
                         </div>
