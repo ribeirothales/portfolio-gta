@@ -1,7 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FileCheck } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const Curriculum = () => {
+    const { t, i18n } = useTranslation();
+
+    useEffect(() => {
+        document.documentElement.style.setProperty('--download-text-before', `"${t('curriculum1')}"`);
+    }, [t, i18n.language]);
+
     const handleDownload = () => {
         setTimeout(() => {
             const link = document.createElement('a');
@@ -55,13 +62,13 @@ const Curriculum = () => {
                         <FileCheck />
                         <div className="mb-6 text-center">
                             <h1 className="text-4xl md:text-5xl font-bold mb-5 mt-15 text-white text-center">
-                                Curriculum Vitae
+                                {t('curriculum')}
                             </h1>
                         </div>
 
                         <div className="flex justify-center items-center mt-5 mb-[10px]">
                             {/* Botão original mantido exatamente como estava */}
-                            <button onClick={handleDownload} class="group cursor-pointer relative w-[120px] h-[60px] bg-[linear-gradient(144deg,_#af40ff,_#5b42f3_50%,_#00ddeb)] text-white whitespace-nowrap flex flex-wrap rounded-lg overflow-hidden before:content-['Baixe_aqui'] before:pointer-events-none before:absolute before:z-[1] before:top-[50%] before:left-[50%] before:translate-y-[-50%] before:translate-x-[-50%] after:content-['Download'] after:absolute after:top-[50%] after:left-[-100%] after:duration-[.4s] after:pointer-events-none before:duration-[.4s] after:translate-x-[-50%] after:translate-y-[-50%] hover:before:translate-x-[100%] hover:after:left-[50%] focus:after:opacity-0 focus:before:opacity-0">
+                            <button onClick={handleDownload} class="group cursor-pointer relative w-[120px] h-[60px] bg-[linear-gradient(144deg,_#af40ff,_#5b42f3_50%,_#00ddeb)] text-white whitespace-nowrap flex flex-wrap rounded-lg overflow-hidden before:content-[var(--download-text-before)] before:pointer-events-none before:absolute before:z-[1] before:top-[50%] before:left-[50%] before:translate-y-[-50%] before:translate-x-[-50%] after:content-['Download'] after:absolute after:top-[50%] after:left-[-100%] after:duration-[.4s] after:pointer-events-none before:duration-[.4s] after:translate-x-[-50%] after:translate-y-[-50%] hover:before:translate-x-[100%] hover:after:left-[50%] focus:after:opacity-0 focus:before:opacity-0">
                                 <div class="w-[10px] h-[10px] blur-[5px] bg-[rgb(30,41,59)] delay-[0.2s] duration-[0.4s] hover:bg-transparent hover:delay-0 hover:duration-0 group-focus:bg-transparent group-focus:delay-[0.25s]"></div>
                                 <div class="w-[10px] h-[10px] blur-[5px] bg-[rgb(30,41,59)] delay-[0.2s] duration-[0.4s] hover:bg-transparent hover:delay-0 hover:duration-0 group-focus:bg-transparent group-focus:delay-[1s]"></div>
                                 <div class="w-[10px] h-[10px] blur-[5px] bg-[rgb(30,41,59)] delay-[0.2s] duration-[0.4s] hover:bg-transparent hover:delay-0 hover:duration-0 group-focus:bg-transparent group-focus:delay-[1.75s]"></div>

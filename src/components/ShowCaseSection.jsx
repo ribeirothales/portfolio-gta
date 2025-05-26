@@ -2,10 +2,12 @@ import { useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { useTranslation } from 'react-i18next';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const AppShowcase = () => {
+  const { t } = useTranslation();
   const sectionRef = useRef(null);
   const rydeRef = useRef(null);
   const libraryRef = useRef(null);
@@ -83,10 +85,7 @@ const AppShowcase = () => {
             <div className="text-content">
               <h2 className="flex justify-center items-center xl:justify-start xl:items-start">Hermetic Chat</h2>
               <p className="text-white-50 md:text-xl text-justify">
-                Uma aplicação de chat em tempo real, onde os usuários podem interagir
-                instantaneamente com amigos e colegas. A aplicação inclui recursos como
-                mensagens privadas, alternância entre temas Dark e Light, lista de usuários
-                online, autenticação de usuários e muito mais!
+                {t('project1resume')}
               </p>
             </div>
           </div>
@@ -103,7 +102,7 @@ const AppShowcase = () => {
                   className="transition-transform duration-300 ease-in-out hover:scale-105"
                 />
               </div>
-              <h2 className="flex justify-center items-center xl:justify-start xl:items-start">Eleições Presidencias 2014</h2>
+              <h2 className="flex justify-center items-center xl:justify-start xl:items-start">{t('project2')}</h2>
             </div>
 
             <div className="project" ref={ycDirectoryRef}>
@@ -117,7 +116,7 @@ const AppShowcase = () => {
                   className="transition-transform duration-300 ease-in-out hover:scale-105 "
                 />
               </div>
-              <h2 className="flex justify-center items-center xl:justify-start xl:items-start">A questão pitagórica</h2>
+              <h2 className="flex justify-center items-center xl:justify-start xl:items-start">{t('project3')}</h2>
             </div>
           </div>
         </div>
@@ -133,7 +132,7 @@ const AppShowcase = () => {
               rel="noopener noreferrer"
               className="text-white text-center py-3 px-6 rounded-xl font-semibold bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 shadow-lg hover:brightness-110 transition"
             >
-              Ver no GitHub
+              {t('github')}
             </a>
             <a
               href="https://hermetic-chat.onrender.com/"
@@ -141,7 +140,7 @@ const AppShowcase = () => {
               rel="noopener noreferrer"
               className="text-white text-center py-3 px-6 rounded-xl font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-lg hover:brightness-110 transition"
             >
-              Ver Projeto Online
+              {t('online')}
             </a>
           </div>
         </ModalWrapper>
@@ -149,7 +148,7 @@ const AppShowcase = () => {
 
       {openModalId === "eleicoes2014" && (
         <ModalWrapper onClose={closeModal}>
-          <h3 className="text-2xl font-bold mb-6 text-center">Eleições Presidenciais 2014</h3>
+          <h3 className="text-2xl font-bold mb-6 text-center">{t('project2')}</h3>
           <div className="flex flex-col gap-4">
             <a
               href="https://github.com/ribeirothales/eleicao-2014"
@@ -157,7 +156,7 @@ const AppShowcase = () => {
               rel="noopener noreferrer"
               className="text-white text-center py-3 px-6 rounded-xl font-semibold bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 shadow-lg hover:brightness-110 transition"
             >
-              Ver no GitHub
+              {t('github')}
             </a>
             <a
               href="https://frontend-d5nv.onrender.com/"
@@ -165,7 +164,7 @@ const AppShowcase = () => {
               rel="noopener noreferrer"
               className="text-white text-center py-3 px-6 rounded-xl font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-lg hover:brightness-110 transition"
             >
-              Ver Projeto Online
+              {t('online')}
             </a>
           </div>
         </ModalWrapper>
@@ -173,7 +172,7 @@ const AppShowcase = () => {
 
       {openModalId === "pitagoras" && (
         <ModalWrapper onClose={closeModal}>
-          <h3 className="text-2xl font-bold mb-6 text-center">A questão pitagórica</h3>
+          <h3 className="text-2xl font-bold mb-6 text-center">{t('project3')}</h3>
           <div className="flex flex-col gap-4">
             <a
               href="https://github.com/ribeirothales/pythagoras-website"
@@ -181,7 +180,7 @@ const AppShowcase = () => {
               rel="noopener noreferrer"
               className="text-white text-center py-3 px-6 rounded-xl font-semibold bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 shadow-lg hover:brightness-110 transition"
             >
-              Ver no GitHub
+              {t('github')}
             </a>
             <a
               href="https://pythagoras-website.netlify.app/"
@@ -189,7 +188,7 @@ const AppShowcase = () => {
               rel="noopener noreferrer"
               className="text-white text-center py-3 px-6 rounded-xl font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-lg hover:brightness-110 transition"
             >
-              Ver Projeto Online
+              {t('online')}
             </a>
           </div>
         </ModalWrapper>

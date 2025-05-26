@@ -1,9 +1,10 @@
 import { useState } from "react";
-
+import { useTranslation } from 'react-i18next';
 import TitleHeader from "./TitleHeader";
 import ContactExperience from "./ContactExperience";
 
 const Contact = () => {
+    const { t } = useTranslation();
     const [formStatus, setFormStatus] = useState(null);
     const [loading, setLoading] = useState(false);
 
@@ -38,20 +39,20 @@ const Contact = () => {
         <section id="contact" className="flex-center section-padding font-[Poppins]">
             <div className="w-full h-full md:px-10 px-5">
                 <TitleHeader
-                    title="Entre em contato!"
-                    sub="💬 Possui ideias ou dúvidas? Vamos conversar."
+                    title={t('contact')}
+                    sub={t('card')}
                 />
                 <div className="grid-12-cols mt-16">
                     <div className="xl:col-span-5">
                         <div className="flex-center card-border rounded-xl p-10">
                             <form onSubmit={handleSubmit} className="w-full flex flex-col gap-7">
                                 <div>
-                                    <label htmlFor="name">Nome</label>
+                                    <label htmlFor="name">{t('name')}</label>
                                     <input
                                         type="text"
                                         id="name"
                                         name="name"
-                                        placeholder="Digite seu nome"
+                                        placeholder={t('typename')}
                                         required
                                     />
                                 </div>
@@ -62,17 +63,17 @@ const Contact = () => {
                                         type="email"
                                         id="email"
                                         name="email"
-                                        placeholder="Digite seu e-mail"
+                                        placeholder={t('email')}
                                         required
                                     />
                                 </div>
 
                                 <div>
-                                    <label htmlFor="message">Mensagem</label>
+                                    <label htmlFor="message">{t('message')}</label>
                                     <textarea
                                         id="message"
                                         name="message"
-                                        placeholder="Como posso ajudar?"
+                                        placeholder={t('help')}
                                         rows="5"
                                         required
                                     />
@@ -83,15 +84,15 @@ const Contact = () => {
                                 <button type="submit">
                                     <div className="text-white mb-7 cursor-pointer text-center py-3 px-6 rounded-xl font-semibold bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 shadow-lg hover:brightness-110 transition">
                                         <div className="bg-circle" />
-                                        <p className="text">{loading ? "Enviando..." : "Enviar"}</p>
+                                        <p className="text">{t('send')}</p>
                                     </div>
                                 </button>
 
                                 {formStatus === "success" && (
-                                    <p className="text-green-500 text-center">E-mail enviado com sucesso!</p>
+                                    <p className="text-green-500 text-center">{t('success')}</p>
                                 )}
                                 {formStatus === "error" && (
-                                    <p className="text-red-500 text-center">Ocorreu um erro. Tente novamente.</p>
+                                    <p className="text-red-500 text-center">{t('abouttitle1')}</p>
                                 )}
                             </form>
                         </div>

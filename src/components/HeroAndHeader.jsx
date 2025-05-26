@@ -3,14 +3,16 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import "remixicon/fonts/remixicon.css";
 import { Mail, Github, Linkedin } from 'lucide-react';
-
+import LanguageSwitcher from "./LanguageSwitcher"; // Importando o componente
+import { useTranslation } from 'react-i18next';
 
 const HeroAndHeader = ({ onLoadComplete }) => {
+    const { t } = useTranslation();
 
     const [menuOpen, setMenuOpen] = useState(false);
     const [menuVisible, setMenuVisible] = useState(false);
     const menuRef = useRef(null);
-    const svgContainerRef = useRef(null); // <-- Ref para o container do SVG
+    const svgContainerRef = useRef(null);
 
     const socialLinks = [
         { icon: Mail, href: 'mailto:thales.o.ribeiro@gmail.com', label: 'Mail' },
@@ -21,10 +23,9 @@ const HeroAndHeader = ({ onLoadComplete }) => {
     useEffect(() => {
         if (menuOpen) {
             document.body.style.overflow = "hidden";
-            setMenuVisible(true); // Torna o menu visível quando aberto
+            setMenuVisible(true);
         } else {
             document.body.style.overflow = "auto";
-            // O menu permanecerá visível até que a animação de fechamento termine
         }
 
         return () => {
@@ -34,9 +35,7 @@ const HeroAndHeader = ({ onLoadComplete }) => {
 
     let [showContent, setShowContent] = useState(false);
 
-    // Animação de entrada do SVG Loader
     useGSAP(() => {
-        // Verifica se o container do SVG existe antes de tentar animar
         if (!svgContainerRef.current) return;
 
         const tl = gsap.timeline();
@@ -54,33 +53,23 @@ const HeroAndHeader = ({ onLoadComplete }) => {
             transformOrigin: "50% 50%",
             opacity: 0,
             onComplete: function () {
-                // Verifica o progresso para evitar execuções múltiplas (ex: StrictMode)
                 if (this.progress() >= 0.9) {
-                    // Não remove mais o SVG aqui, apenas controla a visibilidade com showContent
                     onLoadComplete?.();
                     setShowContent(true);
-                    // Não precisa mais remover o SVG explicitamente se ele está condicionalmente renderizado
-                    // const svgElement = svgContainerRef.current;
-                    // if (svgElement) {
-                    //     svgElement.style.display = 'none'; // Ou remove se preferir
-                    // }
-                    this.kill(); // Mata a timeline para evitar problemas
+                    this.kill();
                 }
             },
         });
-        // Passa o ref do container SVG como escopo e observa showContent para re-executar se necessário (embora não deva)
     }, { scope: svgContainerRef, dependencies: [onLoadComplete] });
 
-    // Animação do conteúdo principal após o loader
     useGSAP(() => {
-        // Só executa se showContent for true
         if (!showContent) return;
 
         gsap.to(".main", {
             scale: 1,
             rotate: 0,
             duration: 1,
-            delay: "-1", // Ajuste o delay conforme necessário após a mudança
+            delay: "-1",
             ease: "Expo.easeInOut",
         });
 
@@ -122,7 +111,7 @@ const HeroAndHeader = ({ onLoadComplete }) => {
 
         const handleMouseMove = (e) => {
             const xMove = (e.clientX / window.innerWidth - 0.5) * 40;
-            gsap.to(".main .text", { // Certifique-se que .text está dentro de .main
+            gsap.to(".main .text", {
                 x: `${xMove * 0.4}%`,
             });
             gsap.to(".sky", {
@@ -137,17 +126,13 @@ const HeroAndHeader = ({ onLoadComplete }) => {
             mainElement.addEventListener("mousemove", handleMouseMove);
         }
 
-        // Cleanup function para remover o event listener
         return () => {
             if (mainElement) {
                 mainElement.removeEventListener("mousemove", handleMouseMove);
             }
         };
-
-        // Depende de showContent para executar quando o conteúdo principal for exibido
     }, [showContent]);
 
-    // Animação do menu lateral com GSAP
     useGSAP(() => {
         if (!menuRef.current) return;
 
@@ -158,19 +143,15 @@ const HeroAndHeader = ({ onLoadComplete }) => {
         }
     }, [menuOpen, menuVisible]);
 
-
-
     return (
         <>
-            {/* SVG Loader - Renderizado condicionalmente */}
-            {/* Adicionado o ref aqui */}
             {!showContent && (
                 <div ref={svgContainerRef} className="svg flex items-center justify-center fixed top-0 left-0 z-[100] w-full h-screen overflow-hidden bg-[#000]">
                     <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
                         <defs>
                             <mask id="viMask">
                                 <rect width="100%" height="100%" fill="black" />
-                                <g className="vi-mask-group"> {/* O alvo da animação */}
+                                <g className="vi-mask-group">
                                     <text
                                         x="50%"
                                         y="50%"
@@ -198,7 +179,6 @@ const HeroAndHeader = ({ onLoadComplete }) => {
                 </div>
             )}
 
-            {/* Navbar MOVIDA PARA FORA da div.main, com classes de fixação e pointer-events */}
             {showContent && (
                 <div className="navbar fixed top-0 left-0 z-50 w-full py-5 md:py-10 px-5 md:px-10 pointer-events-none">
                     <div className="logo flex gap-7 justify-between items-center">
@@ -221,7 +201,6 @@ const HeroAndHeader = ({ onLoadComplete }) => {
                             </div>
                         </div>
 
-                        {/* Menu Overlay */}
                         {menuVisible && (
                             <>
                                 <div
@@ -235,11 +214,11 @@ const HeroAndHeader = ({ onLoadComplete }) => {
                                     style={{ transform: "translateX(100%)" }}
                                 >
                                     <ul className="space-y-4 mt-20 ml-10 text-[40px] text-white">
-                                        <li><a href="#" className="block hover:text-purple-400" onClick={() => setMenuOpen(false)}>Home</a></li>
-                                        <li><a href="#about" className="block hover:text-purple-400" onClick={() => setMenuOpen(false)} >Sobre Mim</a></li>
-                                        <li><a href="#curriculum" className="block hover:text-purple-400" onClick={() => setMenuOpen(false)} >Currículo</a></li>
-                                        <li><a href="#work" className="block hover:text-purple-400" onClick={() => setMenuOpen(false)}>Projetos</a></li>
-                                        <li><a href="#contact" className="block hover:text-purple-400" onClick={() => setMenuOpen(false)}>Contato</a></li>
+                                        <li><a href="#" className="block hover:text-purple-400" onClick={() => setMenuOpen(false)}>{t('menu1')}</a></li>
+                                        <li><a href="#about" className="block hover:text-purple-400" onClick={() => setMenuOpen(false)} >{t('menu2')}</a></li>
+                                        <li><a href="#curriculum" className="block hover:text-purple-400" onClick={() => setMenuOpen(false)} >{t('menu3')}</a></li>
+                                        <li><a href="#work" className="block hover:text-purple-400" onClick={() => setMenuOpen(false)}>{t('menu4')}</a></li>
+                                        <li><a href="#contact" className="block hover:text-purple-400" onClick={() => setMenuOpen(false)}>{t('menu5')}</a></li>
                                     </ul>
                                 </div>
                             </>
@@ -248,20 +227,16 @@ const HeroAndHeader = ({ onLoadComplete }) => {
                 </div>
             )}
 
-            {/* div.main SEM a navbar dentro e SEM padding-top adicionado */}
             {showContent && (
                 <div className="main w-full rotate-[-10deg] scale-[1.7]">
                     <div className="landing overflow-hidden relative w-full h-screen bg-black">
-                        {/* A navbar NÃO está mais aqui */}
-
                         <div className="imagesdiv relative overflow-hidden w-full h-screen">
-                            {/* ... imagens (sky, bg, character, logo-name, man-mob) como estavam */}
                             <img className="absolute sky scale-[1.5] rotate-[-20deg] top-0 left-0 w-full h-full object-cover" src="./sky.png" alt="" draggable={false}
                                 onContextMenu={(e) => e.preventDefault()} />
-                            <img className="absolute scale-[1.8] rotate-[-3deg] bg top-0 left-0 w-full h-full object-cover" src="./bg.png" alt=""                 draggable={false}
-                  onContextMenu={(e) => e.preventDefault()}/>
-                            <img className="absolute hidden justify-center items-center sm:flex text left-[25%] xl:left-[40%] bottom-[45%] xl:bottom-[42%] w-[50%] xl:w-[19.5%] rotate-[-20deg]" src="./logo-name.png" alt=""                 draggable={false}
-                  onContextMenu={(e) => e.preventDefault()} />
+                            <img className="absolute scale-[1.8] rotate-[-3deg] bg top-0 left-0 w-full h-full object-cover" src="./bg.png" alt="" draggable={false}
+                                onContextMenu={(e) => e.preventDefault()} />
+                            <img className="absolute hidden justify-center items-center sm:flex text left-[25%] xl:left-[40%] bottom-[45%] xl:bottom-[42%] w-[50%] xl:w-[19.5%] rotate-[-20deg]" src="./logo-name.png" alt="" draggable={false}
+                                onContextMenu={(e) => e.preventDefault()} />
                             <div className="absolute hidden w-full sm:flex justify-center items-center bottom-10">
                                 <img className="character w-[50%] xl:w-[17.5%] sticky left-[50%] scale-[10] rotate-[-20deg]" src="./man3.png" alt="" draggable={false}
                                     onContextMenu={(e) => e.preventDefault()} />
@@ -272,7 +247,6 @@ const HeroAndHeader = ({ onLoadComplete }) => {
                             </div>
                         </div>
                         <div className="btmbar text-white absolute bottom-0 left-0 w-full py-10 md:py-15 px-10 bg-gradient-to-t from-[#061329] to-transparent">
-                            {/* ... barra inferior (social links, stacks.png) como estava */}
                             <div className="flex gap-6 items-center flex-row xl:flex-row justify-center md:justify-start xl:items-center mt-25 md:mt-10 sm:mt-0">
                                 {socialLinks.map(social => (
                                     <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label} className="hover:text-brand transition-colors">
@@ -282,6 +256,9 @@ const HeroAndHeader = ({ onLoadComplete }) => {
                             </div>
                             <img className="absolute h-[30px] md:h-[35px] xl:h-[55px] top-[50%] md:top-[35%] xl:top-[60%] left-[49.6%] md:left-1/2 -translate-x-1/2 -translate-y-1/2" src="./stacks.png" alt="" draggable={false}
                                 onContextMenu={(e) => e.preventDefault()} />
+                            
+                            {/* Seletor de idiomas posicionado no canto inferior esquerdo */}
+                            <LanguageSwitcher />
                         </div>
                     </div>
                 </div>
@@ -291,4 +268,3 @@ const HeroAndHeader = ({ onLoadComplete }) => {
 };
 
 export default HeroAndHeader;
-
