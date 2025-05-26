@@ -117,9 +117,11 @@ const HeroAndHeader = ({ onLoadComplete }) => {
             gsap.to(".sky", {
                 x: xMove,
             });
-            gsap.to(".bg", {
-                x: xMove * 1.7,
-            });
+            if (window.innerWidth > 768) {
+                gsap.to(".bg", {
+                    x: xMove * 1.7,
+                });
+            }
         };
 
         if (mainElement) {
@@ -233,7 +235,7 @@ const HeroAndHeader = ({ onLoadComplete }) => {
                         <div className="imagesdiv relative overflow-hidden w-full h-screen">
                             <img className="absolute sky scale-[1.5] rotate-[-20deg] top-0 left-0 w-full h-full object-cover" src="./sky.png" alt="" draggable={false}
                                 onContextMenu={(e) => e.preventDefault()} />
-                            <img className="absolute scale-[1.8] rotate-[-3deg] bg top-0 left-0  h-full object-cover" src="./bg.png" alt="" draggable={false}
+                            <img className="absolute scale-[1.8] rotate-[-3deg] bg top-0 left-0 w-full h-full object-cover" src="./bg.png" alt="" draggable={false}
                                 onContextMenu={(e) => e.preventDefault()} />
                             <img className="absolute hidden justify-center items-center sm:flex text left-[25%] xl:left-[40%] bottom-[45%] xl:bottom-[42%] w-[50%] xl:w-[19.5%] rotate-[-20deg]" src="./logo-name.png" alt="" draggable={false}
                                 onContextMenu={(e) => e.preventDefault()} />
@@ -256,7 +258,7 @@ const HeroAndHeader = ({ onLoadComplete }) => {
                             </div>
                             <img className="absolute h-[30px] md:h-[35px] xl:h-[55px] top-[50%] md:top-[35%] xl:top-[60%] left-[49.6%] md:left-1/2 -translate-x-1/2 -translate-y-1/2" src="./stacks.png" alt="" draggable={false}
                                 onContextMenu={(e) => e.preventDefault()} />
-                            
+
                             {/* Seletor de idiomas posicionado no canto inferior esquerdo */}
                             <LanguageSwitcher />
                         </div>
