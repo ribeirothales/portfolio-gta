@@ -159,7 +159,7 @@ const AppShowcase = () => {
               {t('github')}
             </a>
             <a
-              href="https://frontend-d5nv.onrender.com/"
+              href="https://eleicao-2014.netlify.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white text-center py-3 px-6 rounded-xl font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-lg hover:brightness-110 transition"
