@@ -30,7 +30,7 @@ const AppShowcase = () => {
     recentlyClosedRef.current = true;
     closingTimeout.current = setTimeout(() => {
       recentlyClosedRef.current = false;
-    }, 500); // tempo aumentado
+    }, 500); 
   };
 
   useEffect(() => {
