@@ -31,11 +31,10 @@ function LanguageSwitcher() {
         };
     }, []);
 
-    // --- AJUSTE AQUI --- 
-    // Normaliza o código do idioma atual (ex: 'pt-BR' -> 'pt') para comparação
-    const currentLanguageCode = i18n.language.split('-')[0]; // Pega apenas a parte base do idioma (ex: 'pt' de 'pt-BR')
+    
+    const currentLanguageCode = i18n.language.split('-')[0]; 
 
-    // Encontra o nome do idioma atual usando o código normalizado
+    
     const currentLanguage = languages.find(lang => lang.code === currentLanguageCode) || languages[0];
 
     return (
@@ -47,7 +46,7 @@ function LanguageSwitcher() {
                 aria-haspopup="true"
             >
                 <Globe size={18} />
-                {/* Exibe o nome do idioma encontrado */} 
+                
                 <span>{currentLanguage.name}</span> 
             </button>
 
@@ -56,17 +55,14 @@ function LanguageSwitcher() {
                     {languages.map((language) => (
                         <button
                             key={language.code}
-                            // --- AJUSTE AQUI --- 
-                            // Compara o código da opção com o código normalizado para definir a classe 'active'
+                            
                             className={`language-option ${language.code === currentLanguageCode ? 'active' : ''}`}
                             onClick={() => changeLanguage(language.code)}
-                            // --- AJUSTE AQUI --- 
-                            // Compara o código da opção com o código normalizado para definir aria-selected
+                            
                             aria-selected={language.code === currentLanguageCode}
                         >
                             <span className="language-radio">
-                                {/* --- AJUSTE AQUI --- */}
-                                {/* Compara o código da opção com o código normalizado para mostrar o radio selecionado */} 
+                                
                                 {language.code === currentLanguageCode && <span className="radio-selected"></span>}
                             </span>
                             {language.name}
