@@ -6,27 +6,21 @@ const Curriculum = () => {
     const { t, i18n } = useTranslation();
 
     useEffect(() => {
-        // Atualiza o texto do botão conforme o idioma
+        
         document.documentElement.style.setProperty('--download-text-before', `"${t('curriculum1')}"`);
     }, [t, i18n.language]);
 
     const handleDownload = () => {
-        // Determina o nome do arquivo com base no idioma atual
-        // Exemplo: 'pt-BR' -> 'Curriculo_Thales_Ribeiro_pt-BR.pdf'
-        //          'en'    -> 'Curriculo_Thales_Ribeiro_en.pdf'
-        // Certifique-se de que os arquivos existam na pasta 'public' ou onde estiverem hospedados
-        // e que os nomes correspondam exatamente (incluindo maiúsculas/minúsculas).
+        
         const baseFilename = 'Curriculum_Thales_Ribeiro'; // Mantenha o nome base
         const fileExtension = '.pdf';
         const languageCode = i18n.language; // Obtém o código do idioma (ex: 'pt-BR', 'en')
 
-        // Constrói o nome do arquivo dinamicamente
-        // Você pode ajustar a lógica aqui se seus códigos de idioma ou nomes de arquivo forem diferentes
-        // Por exemplo, se usar 'pt' em vez de 'pt-BR', ajuste a lógica.
+        
         const dynamicFilename = `${baseFilename}_${languageCode}${fileExtension}`;
         const filePath = `./${dynamicFilename}`; // Assume que os arquivos estão na pasta public
 
-        // Adiciona um pequeno atraso para o efeito visual do botão (opcional)
+        
         setTimeout(() => {
             const link = document.createElement('a');
             link.href = filePath;
@@ -37,14 +31,12 @@ const Curriculum = () => {
         }, 2000); // Reduzi o timeout, 2 segundos parece muito
     };
 
-    // --- Restante do código (Refs, estados e JSX) permanece o mesmo --- 
-
-    // Refs e estados para o efeito de glowcard
+   
     const bannerRef = useRef(null);
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [isHovering, setIsHovering] = useState(false);
 
-    // Função para atualizar a posição do mouse em relação ao banner
+    
     const handleMouseMove = (e) => {
         if (!bannerRef.current) return;
         const rect = bannerRef.current.getBoundingClientRect();
