@@ -3,7 +3,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import "remixicon/fonts/remixicon.css";
 import { Mail, Github, Linkedin } from 'lucide-react';
-import LanguageSwitcher from "./LanguageSwitcher"; // Importando o componente
+import LanguageSwitcher from "./LanguageSwitcher"; 
 import { useTranslation } from 'react-i18next';
 
 const HeroAndHeader = ({ onLoadComplete }) => {
@@ -259,7 +259,7 @@ const HeroAndHeader = ({ onLoadComplete }) => {
                             <img className="absolute h-[30px] md:h-[35px] xl:h-[55px] top-[50%] md:top-[35%] xl:top-[60%] left-[49.6%] md:left-1/2 -translate-x-1/2 -translate-y-1/2" src="./stacks.png" alt="" draggable={false}
                                 onContextMenu={(e) => e.preventDefault()} />
 
-                            {/* Seletor de idiomas posicionado no canto inferior esquerdo */}
+                            
                             <LanguageSwitcher />
                         </div>
                     </div>
